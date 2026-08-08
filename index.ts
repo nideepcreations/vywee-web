@@ -1,9 +1,11 @@
-export * from './use-app-theme';
-export * from './use-breakpoint';
-export * from './use-local-storage';
-export * from './use-lock-body-scroll';
-export * from './use-media-query';
-export * from './use-mounted';
-export * from './use-prefers-reduced-motion';
-export * from './use-scroll-position';
-export * from './use-theme-preference';
+/**
+ * Single import surface for domain types: `import type { Product } from '@/types'`.
+ * Add new domain files here so consumers never reach into individual modules.
+ */
+export type * from './brand';
+export type * from './category';
+export type * from './common';
+export type * from './guide';
+export type * from './offer';
+export type * from './product';
+export type * from './theme';
