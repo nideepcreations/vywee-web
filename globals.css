@@ -1,0 +1,431 @@
+@import 'tailwindcss';
+@import '../styles/tokens.css';
+
+/* Dark mode is class driven so next-themes can toggle it without a flash. */
+@custom-variant dark (&:is(.dark *));
+
+/**
+ * TOKEN BRIDGE
+ *
+ * Maps the semantic layer in styles/tokens.css into Tailwind's theme
+ * namespaces. `inline` substitutes the declared value — which is itself a
+ * `var()` reference — into each utility, so utilities stay theme-reactive:
+ * `bg-surface` compiles to `background-color: var(--surface)` and follows
+ * `.dark` at runtime with no recompilation.
+ *
+ * Nothing outside this block should know a raw value exists.
+ */
+@theme inline {
+  /* ---- Colour: surfaces ---- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-surface-hover: var(--surface-hover);
+  --color-elevated: var(--elevated);
+  --color-elevated-foreground: var(--elevated-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted-hover: var(--muted-hover);
+
+  /* ---- Colour: lines ---- */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-input-hover: var(--input-hover);
+  --color-ring: var(--ring);
+
+  /* ---- Colour: brand ---- */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-active: var(--brand-active);
+  --color-brand-subtle: var(--brand-subtle);
+  --color-brand-subtle-hover: var(--brand-subtle-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-on-subtle: var(--brand-on-subtle);
+
+  /* ---- Colour: accent ---- */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-on-subtle: var(--accent-on-subtle);
+
+  /* ---- Colour: highlight (deals) ---- */
+  --color-highlight: var(--highlight);
+  --color-highlight-strong: var(--highlight-strong);
+  --color-highlight-subtle: var(--highlight-subtle);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-highlight-on-subtle: var(--highlight-on-subtle);
+
+  /* ---- Colour: status ---- */
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-on-subtle: var(--success-on-subtle);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-on-subtle: var(--warning-on-subtle);
+  --color-danger: var(--danger);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-on-subtle: var(--danger-on-subtle);
+  --color-info: var(--info);
+  --color-info-subtle: var(--info-subtle);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-on-subtle: var(--info-on-subtle);
+
+  /* ---- Colour: overlays ---- */
+  --color-overlay: var(--overlay);
+  --color-scrim: var(--scrim);
+
+  /* ---- Typography ---- */
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  --text-2xs: var(--vy-text-2xs);
+  --text-xs: var(--vy-text-xs);
+  --text-sm: var(--vy-text-sm);
+  --text-base: var(--vy-text-base);
+  --text-lg: var(--vy-text-lg);
+  --text-xl: var(--vy-text-xl);
+  --text-2xl: var(--vy-text-2xl);
+  --text-3xl: var(--vy-text-3xl);
+  --text-4xl: var(--vy-text-4xl);
+  --text-5xl: var(--vy-text-5xl);
+
+  /* Paired line heights: a size used on its own still lands on the scale. */
+  --text-2xs--line-height: var(--vy-leading-snug);
+  --text-xs--line-height: var(--vy-leading-snug);
+  --text-sm--line-height: var(--vy-leading-normal);
+  --text-base--line-height: var(--vy-leading-normal);
+  --text-lg--line-height: var(--vy-leading-relaxed);
+  --text-xl--line-height: var(--vy-leading-snug);
+  --text-2xl--line-height: var(--vy-leading-snug);
+  --text-3xl--line-height: var(--vy-leading-tight);
+  --text-4xl--line-height: var(--vy-leading-tight);
+  --text-5xl--line-height: var(--vy-leading-tight);
+
+  --font-weight-regular: var(--vy-font-weight-regular);
+  --font-weight-medium: var(--vy-font-weight-medium);
+  --font-weight-semibold: var(--vy-font-weight-semibold);
+  --font-weight-bold: var(--vy-font-weight-bold);
+  --font-weight-extrabold: var(--vy-font-weight-extrabold);
+
+  --leading-none: var(--vy-leading-none);
+  --leading-tight: var(--vy-leading-tight);
+  --leading-snug: var(--vy-leading-snug);
+  --leading-normal: var(--vy-leading-normal);
+  --leading-relaxed: var(--vy-leading-relaxed);
+
+  --tracking-tighter: var(--vy-tracking-tighter);
+  --tracking-tight: var(--vy-tracking-tight);
+  --tracking-normal: var(--vy-tracking-normal);
+  --tracking-wide: var(--vy-tracking-wide);
+  --tracking-widest: var(--vy-tracking-widest);
+
+  /* ---- Radius ---- */
+  --radius-none: var(--vy-radius-none);
+  --radius-xs: var(--vy-radius-xs);
+  --radius-sm: var(--vy-radius-sm);
+  --radius-md: var(--vy-radius-md);
+  --radius-lg: var(--vy-radius-lg);
+  --radius-xl: var(--vy-radius-xl);
+  --radius-2xl: var(--vy-radius-2xl);
+  --radius-pill: var(--vy-radius-pill);
+
+  /* ---- Elevation ---- */
+  --shadow-xs: var(--vy-shadow-xs);
+  --shadow-sm: var(--vy-shadow-sm);
+  --shadow-md: var(--vy-shadow-md);
+  --shadow-lg: var(--vy-shadow-lg);
+  --shadow-xl: var(--vy-shadow-xl);
+  --inset-shadow-inner: var(--vy-shadow-inner);
+
+  /* ---- Motion ---- */
+  --ease-standard: var(--vy-ease-standard);
+  --ease-entrance: var(--vy-ease-entrance);
+  --ease-exit: var(--vy-ease-exit);
+
+  --animate-fade-in: vy-fade-in var(--vy-duration-base) var(--vy-ease-standard) both;
+  --animate-fade-up: fade-up var(--vy-duration-slow) var(--vy-ease-entrance) both;
+  --animate-enter: fade-up var(--vy-duration-fast) var(--vy-ease-entrance) both;
+  --animate-scale-in: vy-scale-in var(--vy-duration-base) var(--vy-ease-entrance) both;
+  --animate-overlay-in: vy-fade-in var(--vy-duration-base) var(--vy-ease-standard) both;
+  --animate-sheet-left: vy-slide-in-left var(--vy-duration-base) var(--vy-ease-entrance) both;
+  --animate-sheet-right: vy-slide-in-right var(--vy-duration-base) var(--vy-ease-entrance) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  /* ---- Breakpoints (min-width only: mobile first) ---- */
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
+}
+
+/* ===================================================================
+ * KEYFRAMES
+ * =================================================================== */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes vy-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vy-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes vy-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes vy-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ===================================================================
+ * BASE
+ * =================================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--vy-header-height) + 1rem);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--vy-text-base);
+    line-height: var(--vy-leading-normal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* One focus treatment for the entire product. Components never remove
+     it; if a surface needs more contrast, raise --ring for that surface. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--vy-radius-xs);
+  }
+
+  /* Windows high contrast replaces our palette entirely, so the focus
+     ring has to be re-stated in system colours or it disappears. */
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 3px solid CanvasText;
+    }
+  }
+
+  ::selection {
+    background-color: var(--brand-subtle);
+    color: var(--foreground);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: var(--vy-tracking-tight);
+    line-height: var(--vy-leading-tight);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Prices, ratings and specs sit on a tabular grid so figures in a
+     column never jitter between renders. */
+  [data-numeric] {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--vy-tracking-tight);
+  }
+}
+
+/* ===================================================================
+ * UTILITIES
+ * =================================================================== */
+
+/* Duration utilities bound to the motion tokens. Tailwind has no
+   duration theme namespace, so these are declared explicitly rather
+   than written as arbitrary values at each call site. */
+@utility duration-instant {
+  transition-duration: var(--vy-duration-instant);
+}
+
+@utility duration-fast {
+  transition-duration: var(--vy-duration-fast);
+}
+
+@utility duration-base {
+  transition-duration: var(--vy-duration-base);
+}
+
+@utility duration-slow {
+  transition-duration: var(--vy-duration-slow);
+}
+
+@utility duration-slower {
+  transition-duration: var(--vy-duration-slower);
+}
+
+/* Focus ring drawn as a shadow, for elements that cannot use `outline`
+   because they clip or sit inside an overflow container. */
+@utility focus-ring {
+  box-shadow: var(--focus-shadow);
+}
+
+@utility skeleton-shimmer {
+  background-image: linear-gradient(90deg, var(--muted) 0%, var(--border) 50%, var(--muted) 100%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Icons inherit their optical weight from one place. */
+@utility icon-stroke {
+  stroke-width: var(--vy-icon-stroke);
+}
+
+@utility icon-stroke-bold {
+  stroke-width: var(--vy-icon-stroke-bold);
+}
+
+/* ===================================================================
+ * REDUCED MOTION
+ * Motion is removed, not merely shortened. Every token above is
+ * neutralised here, so no component needs its own guard in CSS.
+ * =================================================================== */
+
+/* Duration tokens as utilities. Tailwind generates `duration-<number>` from
+   raw values, which would let arbitrary timings into the codebase; these named
+   utilities keep every transition on the motion scale. */
+@utility duration-instant {
+  transition-duration: var(--vy-duration-instant);
+}
+
+@utility duration-fast {
+  transition-duration: var(--vy-duration-fast);
+}
+
+@utility duration-base {
+  transition-duration: var(--vy-duration-base);
+}
+
+@utility duration-slow {
+  transition-duration: var(--vy-duration-slow);
+}
+
+@utility duration-slower {
+  transition-duration: var(--vy-duration-slower);
+}
+
+/* Reading measure caps for long-form text. */
+@utility measure-tight {
+  max-width: var(--vy-measure-tight);
+}
+
+@utility measure-base {
+  max-width: var(--vy-measure-base);
+}
+
+@utility measure-wide {
+  max-width: var(--vy-measure-wide);
+}
+
+/* Guarantees the 44px minimum touch target without changing visual size. */
+@utility tap-target {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 50% 50%;
+    min-width: var(--tap-target);
+    min-height: var(--tap-target);
+    translate: -50% -50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
