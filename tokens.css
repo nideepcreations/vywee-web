@@ -1,0 +1,333 @@
+/**
+ * Vywee design tokens — the single source of truth for visual decisions.
+ *
+ * Layer 1 (primitives): raw values, prefixed `--vy-`. Components never use them.
+ * Layer 2 (semantic):   role-based aliases. Components only ever use these.
+ *
+ * The `--vy-` prefix keeps primitives out of Tailwind's own theme namespaces
+ * (--color-*, --text-*, --radius-*, --shadow-*), so the bridge in globals.css
+ * can map them without circular references.
+ *
+ * Every colour pair used for text is verified against WCAG AA (4.5:1 normal,
+ * 3:1 for large text and UI boundaries). Ratios are listed in styles/TOKENS.md.
+ */
+
+:root {
+  /* ===============================================================
+   * 1. COLOUR PRIMITIVES
+   * Ink is a blue-black, so neutrals stay in the same family as the
+   * brand ultramarine instead of drifting grey.
+   * ============================================================= */
+  --vy-ink-950: #070b16;
+  --vy-ink-900: #0b1020;
+  --vy-ink-800: #151b2e;
+  --vy-ink-700: #232a41;
+  --vy-ink-600: #39435f;
+  --vy-ink-500: #5a6480;
+  --vy-ink-400: #8d97b0;
+  /* Lightest ink that still clears 3:1 on white — used for control borders. */
+  --vy-ink-350: #848da6;
+  --vy-ink-300: #b9c1d4;
+  --vy-ink-200: #dde3ee;
+  --vy-ink-100: #eef1f7;
+  --vy-ink-50: #f6f8fc;
+
+  --vy-ultramarine-800: #141a7a;
+  --vy-ultramarine-700: #1c22a8;
+  --vy-ultramarine-600: #2b34e0;
+  --vy-ultramarine-500: #4a53f0;
+  --vy-ultramarine-400: #6b74ff;
+  --vy-ultramarine-200: #c3c7ff;
+  --vy-ultramarine-100: #e6e8ff;
+  --vy-ultramarine-950: #121533;
+
+  /* 700 is the text-safe teal; 600 is reserved for fills and icons. */
+  --vy-deepsea-700: #0b666f;
+  --vy-deepsea-600: #0e7c86;
+  --vy-deepsea-500: #12a0ac;
+  --vy-deepsea-400: #35c3ce;
+  --vy-deepsea-100: #dcf5f7;
+  --vy-deepsea-950: #0d3b40;
+
+  /* 700 is the text-safe amber; 500 is the fill used on deal badges. */
+  --vy-saffron-700: #8f5303;
+  --vy-saffron-600: #b96f05;
+  --vy-saffron-500: #f2a73b;
+  --vy-saffron-400: #ffc46b;
+  --vy-saffron-100: #fdf0da;
+  --vy-saffron-950: #3d2c10;
+
+  --vy-crimson-700: #9c1f17;
+  --vy-crimson-600: #c02a20;
+  --vy-crimson-500: #e0483c;
+  /* Lifted tone for text on the dark danger surface — 500 falls short of AA there. */
+  --vy-crimson-400: #ef6055;
+  --vy-crimson-100: #fdeae8;
+  --vy-crimson-950: #3d1512;
+
+  --vy-jade-700: #086a4a;
+  --vy-jade-600: #0b7f59;
+  --vy-jade-500: #17b981;
+  --vy-jade-100: #dbf5ea;
+  --vy-jade-950: #0a3527;
+
+  --vy-white: #ffffff;
+  --vy-black: #000000;
+
+  /* ===============================================================
+   * 2. SEMANTIC COLOUR ROLES — LIGHT THEME
+   * ============================================================= */
+  color-scheme: light;
+
+  /* Surfaces, in ascending elevation */
+  --background: var(--vy-white);
+  --foreground: var(--vy-ink-900);
+  --surface: var(--vy-ink-50);
+  --surface-foreground: var(--vy-ink-900);
+  --surface-hover: var(--vy-ink-100);
+  --elevated: var(--vy-white);
+  --elevated-foreground: var(--vy-ink-900);
+  --muted: var(--vy-ink-100);
+  --muted-foreground: var(--vy-ink-500);
+  --muted-hover: var(--vy-ink-200);
+
+  /* Lines. `border` is decorative; `input` is a control boundary and
+     therefore has to clear 3:1 against the background. */
+  --border: var(--vy-ink-200);
+  --border-strong: var(--vy-ink-300);
+  --input: var(--vy-ink-350);
+  --input-hover: var(--vy-ink-500);
+  --ring: var(--vy-ultramarine-600);
+
+  /* Brand */
+  --brand: var(--vy-ultramarine-600);
+  --brand-hover: var(--vy-ultramarine-700);
+  --brand-active: var(--vy-ultramarine-800);
+  --brand-subtle: var(--vy-ultramarine-100);
+  --brand-subtle-hover: var(--vy-ultramarine-200);
+  --brand-foreground: var(--vy-white);
+  --brand-on-subtle: var(--vy-ultramarine-700);
+
+  /* Accent */
+  --accent: var(--vy-deepsea-600);
+  --accent-hover: var(--vy-deepsea-700);
+  --accent-subtle: var(--vy-deepsea-100);
+  --accent-foreground: var(--vy-white);
+  --accent-on-subtle: var(--vy-deepsea-700);
+
+  /* Highlight — reserved for price drops, savings and deal signalling.
+     The 500 fill is decorative; text on it uses `highlight-on-subtle`. */
+  --highlight: var(--vy-saffron-500);
+  --highlight-strong: var(--vy-saffron-600);
+  --highlight-subtle: var(--vy-saffron-100);
+  --highlight-foreground: var(--vy-ink-900);
+  --highlight-on-subtle: var(--vy-saffron-700);
+
+  /* Status */
+  --success: var(--vy-jade-600);
+  --success-subtle: var(--vy-jade-100);
+  --success-foreground: var(--vy-white);
+  --success-on-subtle: var(--vy-jade-700);
+
+  --warning: var(--vy-saffron-600);
+  --warning-subtle: var(--vy-saffron-100);
+  --warning-foreground: var(--vy-ink-900);
+  --warning-on-subtle: var(--vy-saffron-700);
+
+  --danger: var(--vy-crimson-600);
+  --danger-subtle: var(--vy-crimson-100);
+  --danger-foreground: var(--vy-white);
+  --danger-on-subtle: var(--vy-crimson-700);
+
+  --info: var(--vy-ultramarine-600);
+  --info-subtle: var(--vy-ultramarine-100);
+  --info-foreground: var(--vy-white);
+  --info-on-subtle: var(--vy-ultramarine-700);
+
+  /* Overlays */
+  --overlay: rgb(11 16 32 / 0.4);
+  --scrim: rgb(11 16 32 / 0.06);
+
+  /* ===============================================================
+   * 3. RADIUS
+   * ============================================================= */
+  --vy-radius-none: 0px;
+  --vy-radius-xs: 0.25rem;
+  --vy-radius-sm: 0.375rem;
+  --vy-radius-md: 0.625rem;
+  --vy-radius-lg: 0.875rem;
+  --vy-radius-xl: 1.25rem;
+  --vy-radius-2xl: 1.75rem;
+  --vy-radius-pill: 9999px;
+
+  /* ===============================================================
+   * 4. SPACING
+   * `--spacing` drives Tailwind's numeric scale (p-4 = 1rem). The named
+   * tokens below cover page rhythm, which must not drift between routes.
+   * ============================================================= */
+  --spacing: 0.25rem;
+
+  --space-gutter: 1.25rem;
+  --space-gutter-lg: 2rem;
+  --space-stack: 0.75rem;
+  --space-block: 2rem;
+  --space-section: 3.5rem;
+  --space-section-lg: 5.5rem;
+  --container-max: 78.75rem;
+  --container-prose: 44rem;
+  --header-height: 4rem;
+  /* Minimum hit area for any interactive control on touch. */
+  --tap-target: 3rem;
+
+  /* ===============================================================
+   * 5. TYPOGRAPHY
+   * Mobile-first: sizes from 2xl up interpolate between a phone-sized
+   * minimum and a desktop maximum, so no breakpoint overrides are needed.
+   * ============================================================= */
+  --vy-text-2xs: 0.6875rem;
+  --vy-text-xs: 0.75rem;
+  --vy-text-sm: 0.875rem;
+  --vy-text-base: 1rem;
+  --vy-text-lg: 1.125rem;
+  --vy-text-xl: clamp(1.25rem, 1.19rem + 0.28vw, 1.375rem);
+  --vy-text-2xl: clamp(1.5rem, 1.38rem + 0.55vw, 1.75rem);
+  --vy-text-3xl: clamp(1.75rem, 1.51rem + 1.09vw, 2.25rem);
+  --vy-text-4xl: clamp(2.125rem, 1.76rem + 1.64vw, 2.875rem);
+  --vy-text-5xl: clamp(2.5rem, 1.89rem + 2.73vw, 3.75rem);
+
+  --vy-font-weight-regular: 400;
+  --vy-font-weight-medium: 500;
+  --vy-font-weight-semibold: 600;
+  --vy-font-weight-bold: 700;
+  --vy-font-weight-extrabold: 800;
+
+  --vy-leading-none: 1;
+  --vy-leading-tight: 1.1;
+  --vy-leading-snug: 1.28;
+  --vy-leading-normal: 1.55;
+  --vy-leading-relaxed: 1.7;
+
+  --vy-tracking-tighter: -0.03em;
+  --vy-tracking-tight: -0.015em;
+  --vy-tracking-normal: 0em;
+  --vy-tracking-wide: 0.04em;
+  --vy-tracking-widest: 0.12em;
+
+  /* Reading measure caps. Long-form text past ~75ch is hard to track. */
+  --vy-measure-tight: 45ch;
+  --vy-measure-base: 65ch;
+  --vy-measure-wide: 75ch;
+
+  /* ===============================================================
+   * 6. ELEVATION — tinted with ink so shadows never read muddy grey
+   * ============================================================= */
+  --vy-shadow-xs: 0 1px 2px rgb(11 16 32 / 0.06);
+  --vy-shadow-sm: 0 1px 2px rgb(11 16 32 / 0.06), 0 2px 6px rgb(11 16 32 / 0.05);
+  --vy-shadow-md: 0 2px 4px rgb(11 16 32 / 0.05), 0 8px 20px rgb(11 16 32 / 0.08);
+  --vy-shadow-lg: 0 4px 8px rgb(11 16 32 / 0.06), 0 18px 40px rgb(11 16 32 / 0.1);
+  --vy-shadow-xl: 0 8px 16px rgb(11 16 32 / 0.08), 0 32px 64px rgb(11 16 32 / 0.14);
+  --vy-shadow-inner: inset 0 1px 2px rgb(11 16 32 / 0.07);
+  --vy-shadow-none: 0 0 rgb(0 0 0 / 0);
+
+  /* ===============================================================
+   * 7. MOTION
+   * ============================================================= */
+  --vy-duration-instant: 80ms;
+  --vy-duration-fast: 150ms;
+  --vy-duration-base: 240ms;
+  --vy-duration-slow: 380ms;
+  --vy-duration-slower: 600ms;
+
+  --vy-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --vy-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --vy-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --vy-ease-linear: linear;
+
+  /* ===============================================================
+   * 8. LAYERING
+   * ============================================================= */
+  --z-base: 0;
+  --z-sticky: 20;
+  --z-header: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+}
+
+/**
+ * Dark theme. Only the semantic layer is redefined — primitives, radius,
+ * spacing, typography and motion are theme-independent by design.
+ *
+ * Brand, accent and highlight lift in luminance so text contrast stays above
+ * WCAG AA on the darker surfaces.
+ */
+.dark {
+  color-scheme: dark;
+
+  --background: var(--vy-ink-950);
+  --foreground: var(--vy-ink-100);
+  --surface: var(--vy-ink-900);
+  --surface-foreground: var(--vy-ink-100);
+  --surface-hover: var(--vy-ink-800);
+  --elevated: var(--vy-ink-800);
+  --elevated-foreground: var(--vy-ink-100);
+  --muted: var(--vy-ink-800);
+  --muted-foreground: var(--vy-ink-400);
+  --muted-hover: var(--vy-ink-700);
+
+  --border: var(--vy-ink-700);
+  --border-strong: var(--vy-ink-600);
+  --input: var(--vy-ink-500);
+  --input-hover: var(--vy-ink-400);
+  --ring: var(--vy-ultramarine-400);
+
+  --brand: var(--vy-ultramarine-400);
+  --brand-hover: var(--vy-ultramarine-500);
+  --brand-active: var(--vy-ultramarine-600);
+  --brand-subtle: var(--vy-ultramarine-950);
+  --brand-subtle-hover: var(--vy-ultramarine-800);
+  --brand-foreground: var(--vy-ink-950);
+  --brand-on-subtle: var(--vy-ultramarine-400);
+
+  --accent: var(--vy-deepsea-400);
+  --accent-hover: var(--vy-deepsea-500);
+  --accent-subtle: var(--vy-deepsea-950);
+  --accent-foreground: var(--vy-ink-950);
+  --accent-on-subtle: var(--vy-deepsea-400);
+
+  --highlight: var(--vy-saffron-400);
+  --highlight-strong: var(--vy-saffron-500);
+  --highlight-subtle: var(--vy-saffron-950);
+  --highlight-foreground: var(--vy-ink-950);
+  --highlight-on-subtle: var(--vy-saffron-400);
+
+  --success: var(--vy-jade-500);
+  --success-subtle: var(--vy-jade-950);
+  --success-foreground: var(--vy-ink-950);
+  --success-on-subtle: var(--vy-jade-500);
+
+  --warning: var(--vy-saffron-400);
+  --warning-subtle: var(--vy-saffron-950);
+  --warning-foreground: var(--vy-ink-950);
+  --warning-on-subtle: var(--vy-saffron-400);
+
+  --danger: var(--vy-crimson-500);
+  --danger-subtle: var(--vy-crimson-950);
+  --danger-foreground: var(--vy-ink-950);
+  --danger-on-subtle: var(--vy-crimson-400);
+
+  --info: var(--vy-ultramarine-400);
+  --info-subtle: var(--vy-ultramarine-950);
+  --info-foreground: var(--vy-ink-950);
+  --info-on-subtle: var(--vy-ultramarine-400);
+
+  --overlay: rgb(0 0 0 / 0.6);
+  --scrim: rgb(0 0 0 / 0.3);
+
+  --vy-shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --vy-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4), 0 2px 6px rgb(0 0 0 / 0.35);
+  --vy-shadow-md: 0 2px 4px rgb(0 0 0 / 0.4), 0 8px 20px rgb(0 0 0 / 0.45);
+  --vy-shadow-lg: 0 4px 8px rgb(0 0 0 / 0.45), 0 18px 40px rgb(0 0 0 / 0.55);
+  --vy-shadow-xl: 0 8px 16px rgb(0 0 0 / 0.5), 0 32px 64px rgb(0 0 0 / 0.6);
+  --vy-shadow-inner: inset 0 1px 2px rgb(0 0 0 / 0.5);
+}
