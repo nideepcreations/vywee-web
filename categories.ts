@@ -1,0 +1,176 @@
+import {
+  Blocks,
+  CookingPot,
+  Cpu,
+  Headphones,
+  House,
+  Laptop,
+  Monitor,
+  Plane,
+  Plug,
+  Shirt,
+  Smartphone,
+  Sparkles,
+  WashingMachine,
+  Watch,
+} from 'lucide-react';
+
+import type { Category, CategoryId } from '@/types';
+
+/**
+ * Top-level departments. These are what the homepage browses by; the
+ * research categories below sit under them via `parentId`.
+ */
+const departments: readonly Category[] = [
+  {
+    id: 'cat_electronics' as CategoryId,
+    slug: 'electronics',
+    name: 'Electronics',
+    description:
+      'Phones, laptops, audio and displays, judged on how they hold up after month three.',
+    icon: Cpu,
+    productCount: 511,
+    featured: true,
+  },
+  {
+    id: 'cat_fashion' as CategoryId,
+    slug: 'fashion',
+    name: 'Fashion',
+    description: 'Everyday clothing and footwear, rated on fit consistency and how they wash.',
+    icon: Shirt,
+    productCount: 264,
+    featured: true,
+  },
+  {
+    id: 'cat_home' as CategoryId,
+    slug: 'home',
+    name: 'Home',
+    description: 'Appliances, furniture and air quality, with running costs counted in.',
+    icon: House,
+    productCount: 188,
+    featured: true,
+  },
+  {
+    id: 'cat_beauty' as CategoryId,
+    slug: 'beauty',
+    name: 'Beauty',
+    description: 'Skincare and grooming, compared on ingredients rather than packaging.',
+    icon: Sparkles,
+    productCount: 143,
+    featured: true,
+  },
+  {
+    id: 'cat_kitchen' as CategoryId,
+    slug: 'kitchen',
+    name: 'Kitchen',
+    description: 'Cookware and small appliances that survive daily use in a small kitchen.',
+    icon: CookingPot,
+    productCount: 121,
+    featured: true,
+  },
+  {
+    id: 'cat_travel' as CategoryId,
+    slug: 'travel',
+    name: 'Travel',
+    description: 'Luggage and travel gear tested against airline limits and real trips.',
+    icon: Plane,
+    productCount: 96,
+    featured: true,
+  },
+];
+
+/** Research categories. Products and guides attach at this level. */
+const researchCategories: readonly Category[] = [
+  {
+    id: 'cat_headphones' as CategoryId,
+    slug: 'headphones',
+    name: 'Headphones',
+    description: 'Over-ear, in-ear and open-fit, ranked by how they actually sound on a commute.',
+    icon: Headphones,
+    productCount: 142,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_smartphones' as CategoryId,
+    slug: 'smartphones',
+    name: 'Smartphones',
+    description: 'Phones judged on battery, updates and repairability, not launch-day benchmarks.',
+    icon: Smartphone,
+    productCount: 96,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_laptops' as CategoryId,
+    slug: 'laptops',
+    name: 'Laptops',
+    description:
+      'Machines that hold their performance once the fans have been running for an hour.',
+    icon: Laptop,
+    productCount: 78,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_wearables' as CategoryId,
+    slug: 'wearables',
+    name: 'Wearables',
+    description: 'Watches and bands measured against real training data, not marketing claims.',
+    icon: Watch,
+    productCount: 64,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_monitors' as CategoryId,
+    slug: 'monitors',
+    name: 'Monitors',
+    description:
+      'Panels tested for colour accuracy out of the box and text clarity at working distance.',
+    icon: Monitor,
+    productCount: 51,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_home_appliances' as CategoryId,
+    slug: 'home-appliances',
+    name: 'Home appliances',
+    description: 'Washing machines, purifiers and kitchen gear, with running costs included.',
+    icon: WashingMachine,
+    productCount: 88,
+    featured: false,
+    parentId: 'cat_home' as CategoryId,
+  },
+  {
+    id: 'cat_gaming' as CategoryId,
+    slug: 'gaming',
+    name: 'Gaming',
+    description: 'Consoles, controllers and desk gear that survive more than one season.',
+    icon: Blocks,
+    productCount: 47,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+  {
+    id: 'cat_accessories' as CategoryId,
+    slug: 'accessories',
+    name: 'Accessories',
+    description: 'Chargers, cables and stands — the cheap things that fail first.',
+    icon: Plug,
+    productCount: 133,
+    featured: false,
+    parentId: 'cat_electronics' as CategoryId,
+  },
+];
+
+export const categories: readonly Category[] = [...departments, ...researchCategories];
+
+export const categoryById = new Map(categories.map((category) => [category.id, category]));
+export const categoryBySlug = new Map(categories.map((category) => [category.slug, category]));
+/** The six departments shown on the homepage. */
+export const featuredCategories = categories.filter((category) => category.featured);
+
+/** Categories that products and guides actually attach to. */
+export const leafCategories = categories.filter((category) => category.parentId !== undefined);
