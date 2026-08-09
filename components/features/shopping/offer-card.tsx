@@ -18,6 +18,11 @@ export interface OfferCardProps extends Omit<React.HTMLAttributes<HTMLDivElement
   headingAs?: 'h2' | 'h3' | 'h4';
   /** Marks an offer as ending soon. Resolve on the server to avoid drift. */
   endingSoon?: boolean;
+  /**
+   * Where the card links. Defaults to the offers index; pass the detail page
+   * of the product an offer applies to so the card leads somewhere specific.
+   */
+  href?: string;
 }
 
 /**
@@ -36,6 +41,7 @@ function OfferCard({
   brand,
   headingAs = 'h3',
   endingSoon = false,
+  href = ROUTES.offers,
   className,
   ...props
 }: OfferCardProps) {
@@ -58,7 +64,7 @@ function OfferCard({
 
       <Heading as={headingAs} level="h4">
         <Link
-          href={ROUTES.offers}
+          href={href}
           className="rounded-xs outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           {offer.name}

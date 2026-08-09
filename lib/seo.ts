@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 
+import type { Brand, BuyingGuide, Product } from '@/types';
+
 import { DEFAULT_OG_IMAGE, SITE } from '@/constants/site';
+import { ROUTES } from '@/constants/routes';
 import { absoluteUrl } from '@/lib/utils';
 
 interface MetadataInput {
@@ -107,5 +110,66 @@ export function createBreadcrumbJsonLd(
       name: crumb.name,
       item: absoluteUrl(crumb.path, SITE.url),
     })),
+  };
+}
+
+/**
+ * Product structured data.
+ *
+ * Vywee publishes a tracked range rather than a single figure, so the offer
+ * node is an `AggregateOffer` with low and high prices. Emitting a made-up
+ * exact `price` to satisfy a richer result would misrepresent what we know.
+ */
+export function createProductJsonLd(
+  product: Product,
+  brand: Brand | undefined,
+): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.verdict.summary,
+    sku: product.slug,
+    url: absoluteUrl(ROUTES.product(product.slug), SITE.url),
+    image: absoluteUrl(product.image.src, SITE.url),
+    ...(brand ? { brand: { '@type': 'Brand', name: brand.name } } : {}),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: product.priceBand.currency,
+      lowPrice: product.priceBand.min,
+      highPrice: product.priceBand.max,
+      availability:
+        product.availability === 'out-of-stock'
+          ? 'https://schema.org/OutOfStock'
+          : 'https://schema.org/InStock',
+    },
+  };
+}
+
+/** Editorial structured data for a buying guide. */
+export function createArticleJsonLd(guide: BuyingGuide): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.name,
+    description: guide.excerpt,
+    url: absoluteUrl(ROUTES.guide(guide.slug), SITE.url),
+    image: absoluteUrl(guide.cover.src, SITE.url),
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt,
+    author: { '@type': 'Organization', name: guide.author },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+    },
+    inLanguage: SITE.language,
   };
 }
