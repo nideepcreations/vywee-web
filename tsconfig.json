@@ -23,7 +23,6 @@
     "useUnknownInCatchVariables": true,
     "allowUnreachableCode": false,
 
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
