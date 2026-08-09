@@ -16,10 +16,54 @@ export * from './products';
  * Read-side helpers. Pages call these instead of filtering raw arrays, so the
  * same call sites keep working when this module starts talking to a real API.
  */
+/**
+ * Every category at or below the given slug, parent first.
+ *
+ * Departments hold no products directly — products attach to leaf categories —
+ * so any lookup starting from a department has to walk down before it can
+ * match. The walk is breadth-first and guards against a cycle in the data,
+ * which a hand-edited `parentId` can easily introduce.
+ */
+export function getCategoryDescendants(categorySlug: string): readonly Category[] {
+  const root = categories.find((entry) => entry.slug === categorySlug);
+  if (!root) return [];
+
+  const collected: Category[] = [root];
+  const seen = new Set<string>([root.id]);
+  const queue: Category[] = [root];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (!current) break;
+
+    for (const candidate of categories) {
+      if (candidate.parentId !== current.id || seen.has(candidate.id)) continue;
+      seen.add(candidate.id);
+      collected.push(candidate);
+      queue.push(candidate);
+    }
+  }
+
+  return collected;
+}
+
+/** Direct children only. Used to render a department's sub-navigation. */
+export function getChildCategories(categorySlug: string): readonly Category[] {
+  const parent = categories.find((entry) => entry.slug === categorySlug);
+  if (!parent) return [];
+  return categories.filter((entry) => entry.parentId === parent.id);
+}
+
+/**
+ * Products in a category, including everything nested beneath it. Asking for
+ * `electronics` returns the headphones, laptops and monitors under it.
+ */
 export function getProductsByCategory(categorySlug: string): readonly Product[] {
-  const category = categories.find((entry) => entry.slug === categorySlug);
-  if (!category) return [];
-  return products.filter((product) => product.categoryId === category.id);
+  const branch = getCategoryDescendants(categorySlug);
+  if (branch.length === 0) return [];
+
+  const ids = new Set(branch.map((category) => category.id));
+  return products.filter((product) => ids.has(product.categoryId));
 }
 
 export function getProductsByBrand(brandSlug: string): readonly Product[] {
@@ -51,3 +95,18 @@ export function getActiveOffers(now: Date = new Date()): readonly Offer[] {
     (offer) => new Date(offer.startsAt) <= now && new Date(offer.expiresAt) >= now,
   );
 }
+
+/** Number of products in a category branch. Cheaper than materialising the list. */
+export function countProductsInCategory(categorySlug: string): number {
+  return getProductsByCategory(categorySlug).length;
+}
+
+/**
+ * Lookups the catalogue filters need. Passed into `filterProducts` so that the
+ * pure logic in lib/ never imports mock data.
+ */
+export const productLookups = {
+  categorySlugOf: (product: Product): string | undefined =>
+    categoryById.get(product.categoryId)?.slug,
+  brandSlugOf: (product: Product): string | undefined => brandById.get(product.brandId)?.slug,
+} as const;
