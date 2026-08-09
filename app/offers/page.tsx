@@ -1,3 +1,5 @@
+import type { Offer } from '@/types';
+
 import { OfferCard } from '@/components/features/shopping/offer-card';
 import { ResultCount } from '@/components/features/catalogue/result-count';
 import { PageWrapper } from '@/components/layout/page-wrapper';
@@ -8,6 +10,7 @@ import { Text } from '@/components/ui/typography';
 import { ROUTES } from '@/constants/routes';
 import { brandById } from '@/data/brands';
 import { offers } from '@/data/offers';
+import { productById } from '@/data/products';
 import { createMetadata } from '@/lib/seo';
 
 export const metadata = createMetadata({
@@ -28,6 +31,17 @@ const ENDING_SOON_DAYS = 7;
  * differs between server and client and manufactures urgency, which is the
  * opposite of what this product is for.
  */
+/**
+ * An offer links to the product it applies to. Offers with several products
+ * fall back to the index, since picking one arbitrarily would be misleading.
+ */
+function offerHref(productIds: Offer['productIds']): string | undefined {
+  const [only] = productIds;
+  if (productIds.length !== 1 || only === undefined) return undefined;
+  const product = productById.get(only);
+  return product ? ROUTES.product(product.slug) : undefined;
+}
+
 export default function OffersPage() {
   const now = new Date();
   const endingSoonCutoff = now.getTime() + ENDING_SOON_DAYS * 24 * 60 * 60 * 1000;
@@ -61,6 +75,7 @@ export default function OffersPage() {
                   offer={offer}
                   brand={offer.brandId ? brandById.get(offer.brandId) : undefined}
                   endingSoon={new Date(offer.expiresAt).getTime() <= endingSoonCutoff}
+                  href={offerHref(offer.productIds)}
                   headingAs="h2"
                   className="h-full"
                 />
@@ -84,6 +99,7 @@ export default function OffersPage() {
                 <OfferCard
                   offer={offer}
                   brand={offer.brandId ? brandById.get(offer.brandId) : undefined}
+                  href={offerHref(offer.productIds)}
                   headingAs="h3"
                   className="h-full bg-background opacity-70"
                 />

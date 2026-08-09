@@ -102,6 +102,36 @@ export function countProductsInCategory(categorySlug: string): number {
 }
 
 /**
+ * Products a reader is likely to want next: same category first, then the same
+ * brand, then the wider department. Sorting by rating within each tier stops a
+ * weak product surfacing purely because it shares a category.
+ */
+export function getRelatedProducts(product: Product, limit = 4): readonly Product[] {
+  const byRating = (a: Product, b: Product) => b.rating - a.rating;
+  const seen = new Set<string>([product.id]);
+  const related: Product[] = [];
+
+  const add = (candidates: readonly Product[]) => {
+    for (const candidate of [...candidates].sort(byRating)) {
+      if (related.length >= limit || seen.has(candidate.id)) continue;
+      seen.add(candidate.id);
+      related.push(candidate);
+    }
+  };
+
+  add(products.filter((entry) => entry.categoryId === product.categoryId));
+  add(products.filter((entry) => entry.brandId === product.brandId));
+
+  const category = categoryById.get(product.categoryId);
+  if (category?.parentId) {
+    const department = categories.find((entry) => entry.id === category.parentId);
+    if (department) add(getProductsByCategory(department.slug));
+  }
+
+  return related.slice(0, limit);
+}
+
+/**
  * Lookups the catalogue filters need. Passed into `filterProducts` so that the
  * pure logic in lib/ never imports mock data.
  */
