@@ -1,3 +1,4 @@
+export * from './brand-card';
 export * from './buying-guide-card';
 export * from './examples';
 export * from './category-card';
