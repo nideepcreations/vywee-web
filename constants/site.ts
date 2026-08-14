@@ -4,7 +4,7 @@ import { env } from '@/lib/env';
 export const SITE = {
   name: 'Vywee',
   shortName: 'Vywee',
-  tagline: 'Worth buying, or not.',
+  tagline: 'SMART CHOICES, BETTER LIVING.',
   description:
     'Vywee compares products across retailers and tells you which one is actually worth your money — with honest verdicts, real price bands and no filler.',
   url: env.NEXT_PUBLIC_SITE_URL,
@@ -29,8 +29,17 @@ export const SITE = {
 /** Anchor the header search link points at. */
 export const AI_SEARCH_ANCHOR = '#ai-search';
 
+/**
+ * Open Graph card dimensions.
+ *
+ * There is no static image file: the default card is generated at build time
+ * by `app/opengraph-image.tsx`, so it can never fall out of sync with the
+ * brand name and tagline. Pages that have their own artwork pass it to
+ * `createMetadata` and override the generated one.
+ */
 export const DEFAULT_OG_IMAGE = {
-  url: '/images/og-default.png',
+  /** Served by app/opengraph-image.tsx, rendered to PNG at build time. */
+  url: '/opengraph-image',
   width: 1200,
   height: 630,
   alt: `${SITE.name} — ${SITE.tagline}`,

@@ -50,7 +50,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const brand = getBrandForProduct(product);
 
   return createMetadata({
-    title: brand ? `${brand.name} ${product.name}` : product.name,
+    // Most product names already start with the brand; prefixing again gives
+    // "Sonova Sonova Arc 900".
+    title:
+      brand && !product.name.toLowerCase().startsWith(brand.name.toLowerCase())
+        ? `${brand.name} ${product.name}`
+        : product.name,
     path: ROUTES.product(product.slug),
     description: `${product.headline}. ${product.verdict.summary}`,
     image: product.image.src,

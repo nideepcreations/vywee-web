@@ -42,6 +42,11 @@
   --vy-ultramarine-950: #121533;
 
   /* 700 is the text-safe teal; 600 is reserved for fills and icons. */
+  /* Violet exists only for the brand gradient in the logo mark. */
+  --vy-violet-600: #7e22ce;
+  --vy-violet-500: #9333ea;
+  --vy-violet-400: #c084fc;
+
   --vy-deepsea-700: #0b666f;
   --vy-deepsea-600: #0e7c86;
   --vy-deepsea-500: #12a0ac;
@@ -107,6 +112,10 @@
   --brand-subtle-hover: var(--vy-ultramarine-200);
   --brand-foreground: var(--vy-white);
   --brand-on-subtle: var(--vy-ultramarine-700);
+
+  /* Brand gradient. Used by the logo mark only — not a general surface fill. */
+  --brand-gradient-from: var(--vy-ultramarine-600);
+  --brand-gradient-to: var(--vy-violet-500);
 
   /* Accent */
   --accent: var(--vy-deepsea-600);
@@ -288,6 +297,11 @@
   --brand-subtle-hover: var(--vy-ultramarine-800);
   --brand-foreground: var(--vy-ink-950);
   --brand-on-subtle: var(--vy-ultramarine-400);
+
+  /* Both stops lift in dark mode: the 600/500 pair reads as a dark smudge
+     against ink-950 rather than as a blue-to-purple gradient. */
+  --brand-gradient-from: var(--vy-ultramarine-400);
+  --brand-gradient-to: var(--vy-violet-400);
 
   --accent: var(--vy-deepsea-400);
   --accent-hover: var(--vy-deepsea-500);

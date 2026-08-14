@@ -27,7 +27,7 @@ export function createMetadata(input: MetadataInput = {}): Metadata {
     title,
     description = SITE.description,
     path = '/',
-    image = DEFAULT_OG_IMAGE.url,
+    image,
     keywords,
     noIndex = false,
     type = 'website',
@@ -36,8 +36,34 @@ export function createMetadata(input: MetadataInput = {}): Metadata {
   } = input;
 
   const url = absoluteUrl(path, SITE.url);
-  const resolvedTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
-  const imageUrl = image.startsWith('http') ? image : absoluteUrl(image, SITE.url);
+  /**
+   * Product names already carry their brand, so a page passing "Sonova Arc 900"
+   * with brand "Sonova" would otherwise render "Sonova Sonova Arc 900". The
+   * suffix is also skipped when the title already ends with the site name, so
+   * no page ever reads "Vywee · Vywee".
+   */
+  const resolvedTitle = title
+    ? title.endsWith(SITE.name)
+      ? title
+      : `${title} · ${SITE.name}`
+    : `${SITE.name} — ${SITE.tagline}`;
+
+  /**
+   * When a page supplies no artwork the image keys are omitted entirely, which
+   * lets the generated card from `app/opengraph-image.tsx` apply. Setting them
+   * here would override the file convention with a path that does not exist.
+   */
+  /**
+   * SVG artwork is skipped: most social platforms refuse to render an SVG
+   * card, so a page passing one falls back to the generated PNG rather than
+   * advertising an image that will not display. The default is set explicitly
+   * because the opengraph-image file convention is not applied to routes whose
+   * `generateMetadata` returns its own `openGraph` object.
+   */
+  const usableImage = image && !image.toLowerCase().endsWith('.svg') ? image : DEFAULT_OG_IMAGE.url;
+  const imageUrl = usableImage.startsWith('http')
+    ? usableImage
+    : absoluteUrl(usableImage, SITE.url);
 
   return {
     title: resolvedTitle,
@@ -64,6 +90,11 @@ export function createMetadata(input: MetadataInput = {}): Metadata {
       ],
       ...(type === 'article' ? { publishedTime, modifiedTime } : {}),
     },
+    /**
+     * Twitter images are set here rather than via an app/twitter-image file:
+     * the convention cannot see a page's own artwork, and a second image route
+     * producing an identical card would be dead configuration.
+     */
     twitter: {
       card: 'summary_large_image',
       title: resolvedTitle,

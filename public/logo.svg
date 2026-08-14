@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 32" width="148" height="32" role="img" aria-label="Vywee — SMART CHOICES, BETTER LIVING.">
+  <title>Vywee</title>
+  <defs>
+    <linearGradient id="vywee-logo-gradient" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2b34e0" />
+      <stop offset="1" stop-color="#9333ea" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M5.5 6.5 L16 17.5 L26.5 6.5 M16 17.5 L16 27.5"
+    fill="none"
+    stroke="url(#vywee-logo-gradient)"
+    stroke-width="4.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <text
+    x="42"
+    y="23"
+    font-family="Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
+    font-size="22"
+    font-weight="800"
+    letter-spacing="-0.66"
+    fill="#0b1020"
+  >Vywee</text>
+</svg>
