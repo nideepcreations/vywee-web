@@ -16,7 +16,7 @@ function Footer() {
 
   return (
     <footer className="mt-auto border-t border-border bg-surface">
-      <Container className="py-12 md:py-16">
+      <Container size="wide" className="py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="flex flex-col gap-4">
             <Logo />
