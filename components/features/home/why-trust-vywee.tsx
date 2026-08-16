@@ -42,7 +42,7 @@ const TRUST_POINTS: readonly TrustPoint[] = [
 
 function WhyTrustVywee() {
   return (
-    function WhyTrustVywee() {   return (     <Section       spacing="lg"       surface="muted"       bordered       containerSize="wide"       aria-labelledby="trust-heading"     >       <SectionHeader         eyebrow="How this works"         title="Why trust Vywee"         description="A research tool rather than a storefront. That distinction shows up in what we will and will not tell you."         headingAs="h2"         headingId="trust-heading"         align="center"       />
+    <Section   spacing="lg"   surface="muted"   bordered   containerSize="wide"   aria-labelledby="trust-heading" >
       <SectionHeader
         eyebrow="How this works"
         title="Why trust Vywee"
