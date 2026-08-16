@@ -11,7 +11,7 @@ const containerVariants = cva('mx-auto w-full px-gutter lg:px-gutter-lg', {
       /** Long-form reading measure for guides and legal pages. */
       prose: 'max-w-reading',
       narrow: 'max-w-3xl',
-      wide: 'max-w-[90rem]',
+      wide: 'max-w-[100rem]',
       full: 'max-w-none',
     },
     gutter: {
