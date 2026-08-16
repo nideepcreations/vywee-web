@@ -181,7 +181,7 @@ export default async function ProductPage({ params }: PageProps) {
       </Section>
 
       <Section spacing="md">
-        <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+        <div className="grid gap-10 xl:grid-cols-[2fr_1fr]">
           <section aria-labelledby="specs-heading">
             <Heading as="h2" id="specs-heading" level="h3" className="mb-4">
               Specifications

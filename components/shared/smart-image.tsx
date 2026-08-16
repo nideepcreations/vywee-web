@@ -32,7 +32,9 @@ function SmartImage({
   className,
   containerClassName,
   aspect = '4/3',
-  sizes = '(min-width: 1280px) 320px, (min-width: 768px) 33vw, 90vw',
+  // Mirrors the catalogue grids: 4-up from 1280, 3-up from 1024, 2-up from
+  // 640, single column below. Call sites with a different layout pass their own.
+  sizes = '(min-width: 1280px) 320px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw',
   ...props
 }: SmartImageProps) {
   return (

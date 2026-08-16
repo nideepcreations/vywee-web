@@ -50,7 +50,7 @@ function SortLinks({ basePath, active, preserve = {}, className }: SortLinksProp
                 aria-current={isActive ? 'true' : undefined}
                 scroll={false}
                 className={cn(
-                  'inline-flex min-h-11 items-center rounded-pill border px-3 text-sm',
+                  'tap-target inline-flex min-h-11 items-center rounded-pill border px-3 text-sm',
                   'transition-colors duration-fast ease-standard',
                   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
                   isActive

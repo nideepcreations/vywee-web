@@ -20,7 +20,7 @@ import { Eyebrow } from '@/components/ui/typography';
 import { PRIMARY_NAV, QUICK_LINKS } from '@/constants/navigation';
 
 const linkClasses =
-  'flex items-center gap-3 rounded-md px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors duration-fast hover:bg-muted hover:text-foreground data-[active]:bg-brand-subtle data-[active]:text-brand-on-subtle';
+  'tap-target flex items-center gap-3 rounded-md px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors duration-fast hover:bg-muted hover:text-foreground data-[active]:bg-brand-subtle data-[active]:text-brand-on-subtle';
 
 /**
  * Drawer navigation for small screens. Radix handles focus trapping, escape
@@ -37,7 +37,7 @@ function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+        <Button variant="ghost" size="icon" className="tap-target lg:hidden" aria-label="Open menu">
           <Menu className="size-5" aria-hidden="true" />
         </Button>
       </SheetTrigger>

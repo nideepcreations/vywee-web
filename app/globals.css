@@ -401,7 +401,8 @@
   max-width: var(--vy-measure-wide);
 }
 
-/* Guarantees the 44px minimum touch target without changing visual size. */
+/* Expands the hit area to --tap-target (48px) without changing how large
+   the control looks. Do not apply to elements that already use ::after. */
 @utility tap-target {
   position: relative;
 

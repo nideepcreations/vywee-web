@@ -1,7 +1,6 @@
 export * from './brand-card';
 export * from './buying-guide-card';
 export * from './category-card';
-export * from './examples';
 export * from './offer-badge';
 export * from './offer-card';
 export * from './price-tag';
