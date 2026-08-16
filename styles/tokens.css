@@ -190,7 +190,9 @@
   --space-section-lg: 5.5rem;
   --container-max: 78.75rem;
   --container-prose: 44rem;
-  --header-height: 4rem;
+  /* Steps up in tandem with the large header logo, keeping even
+     breathing room above and below the lockup. */
+  --header-height: 4.25rem;
   /* Minimum hit area for any interactive control on touch. */
   --tap-target: 3rem;
 
@@ -267,6 +269,13 @@
   --z-overlay: 50;
   --z-modal: 60;
   --z-toast: 70;
+}
+
+/* Matches the `xs` breakpoint, where the header lockup steps up to 44px. */
+@media (width >= 30rem) {
+  :root {
+    --header-height: 4.75rem;
+  }
 }
 
 /**

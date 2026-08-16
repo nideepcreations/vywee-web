@@ -42,7 +42,7 @@ function Header({ authSlot }: HeaderProps) {
       <Container className="h-header flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <MobileNav />
-          <Logo priority />
+          <Logo priority size="lg" />
         </div>
 
         <MainNav />

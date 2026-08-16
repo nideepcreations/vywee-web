@@ -49,6 +49,18 @@ function LogoMark({ className, label, ...props }: LogoMarkProps) {
   );
 }
 
+/**
+ * Rendered heights. `lg` is the header treatment: it steps up at `xs` because
+ * the full lockup plus the menu, search and theme controls do not fit on a
+ * 320px viewport at that size.
+ */
+const LOGO_SIZES = {
+  default: 'h-8 w-auto shrink-0',
+  lg: 'h-9 w-auto shrink-0 xs:h-11',
+} as const;
+
+export type LogoSize = keyof typeof LOGO_SIZES;
+
 export interface LogoProps {
   className?: string;
   /** Renders the symbol alone, for tight spaces. */
@@ -56,11 +68,19 @@ export interface LogoProps {
   href?: string;
   /** Only the header instance is above the fold on every route. */
   priority?: boolean;
+  /** `lg` gives the header a stronger brand presence. */
+  size?: LogoSize;
 }
 
 /** Full horizontal lockup, linked to the homepage. */
-function Logo({ className, markOnly = false, href = ROUTES.home, priority = false }: LogoProps) {
-  const shared = 'h-8 w-auto shrink-0';
+function Logo({
+  className,
+  markOnly = false,
+  href = ROUTES.home,
+  priority = false,
+  size = 'default',
+}: LogoProps) {
+  const shared = LOGO_SIZES[size];
 
   return (
     <Link
