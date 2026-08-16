@@ -15,7 +15,7 @@ import { featuredCategories } from '@/data/categories';
  */
 function PopularCategories() {
   return (
-    <Section spacing="lg" surface="muted" bordered aria-labelledby="popular-categories-heading">
+    <Section   spacing="lg"   surface="muted"   bordered   containerSize="wide"   aria-labelledby="popular-categories-heading" >
       <SectionHeader
         title="Popular categories"
         description="Start from a department, or jump straight into research."
