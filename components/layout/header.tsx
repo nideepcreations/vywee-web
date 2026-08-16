@@ -39,7 +39,7 @@ function Header({ authSlot }: HeaderProps) {
         'data-[scrolled]:border-border data-[scrolled]:shadow-xs',
       )}
     >
-      <Container className="h-header flex items-center justify-between gap-4">
+      <Container className="flex h-header items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <MobileNav />
           <Logo priority size="lg" />

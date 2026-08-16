@@ -159,6 +159,24 @@
   --animate-shimmer: shimmer 1.6s linear infinite;
 
   /* ---- Breakpoints (min-width only: mobile first) ---- */
+  /* ---- Spacing and sizing tokens exposed to the utility generator ----
+     Tailwind only emits `px-gutter`, `py-section`, `h-header`, `max-w-page`
+     and friends if the corresponding --spacing-* / --container-* keys are
+     registered here. Without these the utilities compile to nothing, which
+     is what left page content flush against the viewport edges. The values
+     are references, so the responsive --header-height override still applies. */
+  --spacing-gutter: var(--space-gutter);
+  --spacing-gutter-lg: var(--space-gutter-lg);
+  --spacing-stack: var(--space-stack);
+  --spacing-block: var(--space-block);
+  --spacing-section: var(--space-section);
+  --spacing-section-lg: var(--space-section-lg);
+  --spacing-header: var(--header-height);
+  --spacing-tap-target: var(--tap-target);
+
+  --container-page: var(--container-max);
+  --container-reading: var(--container-prose);
+
   --breakpoint-xs: 30rem;
   --breakpoint-sm: 40rem;
   --breakpoint-md: 48rem;
@@ -247,7 +265,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--vy-header-height) + 1rem);
+    scroll-padding-top: calc(var(--header-height) + 1rem);
   }
 
   body {
@@ -364,29 +382,6 @@
  * Motion is removed, not merely shortened. Every token above is
  * neutralised here, so no component needs its own guard in CSS.
  * =================================================================== */
-
-/* Duration tokens as utilities. Tailwind generates `duration-<number>` from
-   raw values, which would let arbitrary timings into the codebase; these named
-   utilities keep every transition on the motion scale. */
-@utility duration-instant {
-  transition-duration: var(--vy-duration-instant);
-}
-
-@utility duration-fast {
-  transition-duration: var(--vy-duration-fast);
-}
-
-@utility duration-base {
-  transition-duration: var(--vy-duration-base);
-}
-
-@utility duration-slow {
-  transition-duration: var(--vy-duration-slow);
-}
-
-@utility duration-slower {
-  transition-duration: var(--vy-duration-slower);
-}
 
 /* Reading measure caps for long-form text. */
 @utility measure-tight {

@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-const containerVariants = cva('px-gutter lg:px-gutter-lg mx-auto w-full', {
+const containerVariants = cva('mx-auto w-full px-gutter lg:px-gutter-lg', {
   variants: {
     size: {
       /** Default page width. */
