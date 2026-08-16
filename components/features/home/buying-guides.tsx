@@ -19,7 +19,7 @@ function BuyingGuides() {
   const guides = buyingGuides.slice(0, 3);
 
   return (
-    <Section spacing="lg" aria-labelledby="guides-heading">
+    <Section   spacing="lg"   containerSize="wide"   aria-labelledby="guides-heading" >
       <SectionHeader
         eyebrow="Read first"
         title="Buying guides"
