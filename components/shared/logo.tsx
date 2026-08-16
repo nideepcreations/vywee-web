@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 
@@ -6,120 +7,97 @@ import { SITE } from '@/constants/site';
 import { cn } from '@/lib/utils';
 
 /**
- * Geometry of the mark, at a 32-unit grid.
+ * Brand marks.
  *
- * Two strokes: a V, and a stem dropping from its vertex. The V *is* the top of
- * the Y, so the two letters share the same three points rather than sitting
- * side by side — that shared vertex is the whole idea. Round caps and joins
- * keep the junction from spiking at small sizes.
+ * `Logo` renders the approved horizontal lockup as artwork — mark and custom
+ * "Vywee" lettering together, exactly as supplied. The wordmark is not set in
+ * a typeface: the letterforms are part of the artwork and are never
+ * reconstructed.
  *
- * The 4.2 stroke is deliberately heavy: at 16px anything thinner loses the
- * stem and the mark reads as a plain V. The stem runs past the arms'
- * midpoint for the same reason — a shorter one blurs into the junction at
- * favicon size and the Y stops being legible.
+ * Two files exist because the lettering colour is baked into the artwork:
+ * navy on light surfaces, white on dark. Both are cut from the same source at
+ * identical dimensions, so the lockup does not change size when the theme
+ * changes. They are swapped with CSS rather than JavaScript, which keeps this
+ * a server component and avoids a flash on first paint.
  *
- * The glyph fills roughly 79% of the viewBox. That is deliberate: a smaller
- * glyph leaves dead space inside the SVG box, which reads as an unintended
- * gap between the mark and the wordmark.
+ * `LogoMark` is the standalone y, which is what the approved sheet specifies
+ * for small sizes — the bag handle and eyelets collapse below roughly 24px.
+ * It is the same artwork the favicon uses.
  */
-const MARK_PATH = 'M5.5 6.5 L16 17.5 L26.5 6.5 M16 17.5 L16 27.5';
-const MARK_STROKE_WIDTH = 4.2;
 
-/** Default gradient id. See `gradientId` on LogoMarkProps for when to override. */
-const DEFAULT_GRADIENT_ID = 'vywee-brand-gradient';
+/** Intrinsic size of the lockup artwork; both variants share it. */
+export const LOGO_SOURCE = { width: 310, height: 105 } as const;
 
-export interface LogoMarkProps extends Omit<React.SVGProps<SVGSVGElement>, 'viewBox'> {
+export interface LogoMarkProps extends Omit<React.ComponentProps<typeof Image>, 'src' | 'alt'> {
   className?: string;
-  /**
-   * Accessible name. Defaults to none: the mark is decorative wherever it sits
-   * beside the wordmark, which is the usual case.
-   */
+  /** Accessible name. Omit where a wordmark sits alongside. */
   label?: string;
-  /**
-   * SVG gradient ids are document-global. The default is shared, which is
-   * harmless while every instance defines an identical gradient — override it
-   * only if a page needs a mark with different stops.
-   */
-  gradientId?: string;
 }
 
-/**
- * Symbol only: the merged V/Y mark.
- *
- * The gradient stops come from `--brand-gradient-from` / `--brand-gradient-to`,
- * so the mark follows the theme — both stops lift in dark mode, because the
- * light pair reads as a dark smudge against the near-black background.
- */
-function LogoMark({ className, label, gradientId = DEFAULT_GRADIENT_ID, ...props }: LogoMarkProps) {
+/** Symbol only: the standalone y, for favicons and tight spaces. */
+function LogoMark({ className, label, ...props }: LogoMarkProps) {
   return (
-    <svg
-      viewBox="0 0 32 32"
-      className={cn('size-8 shrink-0', className)}
-      role={label ? 'img' : undefined}
-      aria-label={label}
+    <Image
+      src="/vywee-y.svg"
+      alt={label ?? ''}
+      width={32}
+      height={32}
       aria-hidden={label ? undefined : true}
-      focusable="false"
+      className={cn('size-8 shrink-0', className)}
       {...props}
-    >
-      <defs>
-        <linearGradient
-          id={gradientId}
-          x1="4"
-          y1="4"
-          x2="28"
-          y2="28"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="var(--brand-gradient-from)" />
-          <stop offset="1" stopColor="var(--brand-gradient-to)" />
-        </linearGradient>
-      </defs>
-      <path
-        d={MARK_PATH}
-        fill="none"
-        stroke={`url(#${gradientId})`}
-        strokeWidth={MARK_STROKE_WIDTH}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    />
   );
 }
 
 export interface LogoProps {
   className?: string;
-  /** Hides the wordmark and keeps only the mark, for tight spaces. */
+  /** Renders the symbol alone, for tight spaces. */
   markOnly?: boolean;
   href?: string;
+  /** Only the header instance is above the fold on every route. */
+  priority?: boolean;
 }
 
-/**
- * Full lockup: mark plus wordmark, linked to the homepage.
- *
- * The wordmark stays the display face at the site's own weight and tracking
- * rather than becoming an image, so it inherits the theme's text colour, scales
- * with the type system and remains selectable text for search engines.
- */
-function Logo({ className, markOnly = false, href = ROUTES.home }: LogoProps) {
+/** Full horizontal lockup, linked to the homepage. */
+function Logo({ className, markOnly = false, href = ROUTES.home, priority = false }: LogoProps) {
+  const shared = 'h-8 w-auto shrink-0';
+
   return (
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center gap-2.5 rounded-md',
+        'inline-flex items-center rounded-md',
         'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring',
         className,
       )}
     >
-      <LogoMark />
       {markOnly ? (
-        <span className="sr-only">{SITE.name}</span>
+        <LogoMark />
       ) : (
-        <span className="font-display text-xl font-extrabold tracking-tighter text-foreground">
-          {SITE.name}
-        </span>
+        <>
+          <Image
+            src="/vywee-logo-light.png"
+            alt=""
+            width={LOGO_SOURCE.width}
+            height={LOGO_SOURCE.height}
+            priority={priority}
+            aria-hidden="true"
+            className={cn(shared, 'dark:hidden')}
+          />
+          <Image
+            src="/vywee-logo-dark.png"
+            alt=""
+            width={LOGO_SOURCE.width}
+            height={LOGO_SOURCE.height}
+            priority={priority}
+            aria-hidden="true"
+            className={cn(shared, 'hidden dark:block')}
+          />
+        </>
       )}
+      <span className="sr-only">{SITE.name}</span>
     </Link>
   );
 }
 
-export { Logo, LogoMark, MARK_PATH, MARK_STROKE_WIDTH };
+export { Logo, LogoMark };

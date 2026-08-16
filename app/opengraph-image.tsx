@@ -1,3 +1,6 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
 import { ImageResponse } from 'next/og';
 
 import { SITE } from '@/constants/site';
@@ -7,19 +10,20 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 /**
- * Default social card, rendered to PNG at build time.
+ * Default social card.
  *
- * Generating it means the card can never drift from the brand name and
- * tagline, and there is no binary asset to keep in sync.
- *
- * Colours are literal rather than token references because this renders
- * outside the browser, where CSS custom properties have nothing to resolve
- * against. The values mirror `--vy-ink-950` and the dark-mode gradient stops —
- * the card sits on an ink background, so it uses the lifted pair.
- *
- * Inline styles are required: the renderer supports no stylesheets or classes.
+ * The card is still generated at build time, so the name and tagline can never
+ * drift from `constants/site.ts` — but the mark itself is the approved raster
+ * artwork, read from disk and inlined as a data URI rather than redrawn. The
+ * renderer has no network access and no CSS custom properties, which is why
+ * the file is read locally and the colours are literal.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  // Pre-composited on the card's own background: the renderer does not
+  // honour PNG alpha, so a transparent mark would show a pale halo.
+  const mark = await readFile(join(process.cwd(), 'public', 'og-mark.png'));
+  const markSrc = `data:image/png;base64,${mark.toString('base64')}`;
+
   return new ImageResponse(
     <div
       style={{
@@ -33,30 +37,8 @@ export default function OpengraphImage() {
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-        <svg width="96" height="96" viewBox="0 0 32 32">
-          <defs>
-            <linearGradient
-              id="og-mark-gradient"
-              x1="4"
-              y1="4"
-              x2="28"
-              y2="28"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0" stopColor="#6b74ff" />
-              <stop offset="1" stopColor="#c084fc" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M5.5 6.5 L16 17.5 L26.5 6.5 M16 17.5 L16 27.5"
-            fill="none"
-            stroke="url(#og-mark-gradient)"
-            strokeWidth="4.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+        <img src={markSrc} width={104} height={100} alt="" />
         <div style={{ fontSize: '64px', fontWeight: 700, color: '#ffffff' }}>{SITE.name}</div>
       </div>
 
@@ -82,7 +64,8 @@ export default function OpengraphImage() {
           display: 'flex',
           height: '10px',
           width: '100%',
-          backgroundImage: 'linear-gradient(90deg, #2b34e0 0%, #9333ea 100%)',
+          backgroundImage:
+            'linear-gradient(90deg, #25D6FF 0%, #1F79FF 30%, #8A20F2 60%, #F62BE6 100%)',
         }}
       />
     </div>,
