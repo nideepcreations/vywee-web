@@ -17,7 +17,7 @@ import { trendingProducts } from '@/data/products';
  */
 function TrendingProducts() {
   return (
-    <Section spacing="lg" surface="muted" bordered aria-labelledby="trending-heading">
+    <Section   spacing="lg"   surface="muted"   bordered   containerSize="wide"   aria-labelledby="trending-heading" >
       <SectionHeader
         eyebrow="This week"
         title="Trending in research"
