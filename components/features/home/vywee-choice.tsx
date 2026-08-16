@@ -21,7 +21,7 @@ function VyweeChoice() {
   const picks = editorsPicks.slice(0, 4);
 
   return (
-    <Section spacing="lg" aria-labelledby="vywee-choice-heading">
+    <Section   spacing="lg"   containerSize="wide"   aria-labelledby="vywee-choice-heading" >
       <SectionHeader
         eyebrow="Vywee Choice"
         title="What we would buy"
