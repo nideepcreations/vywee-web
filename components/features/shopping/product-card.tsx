@@ -126,7 +126,7 @@ function ProductCard({
 
         <Rating value={product.rating} count={product.reviewCount} size="sm" />
 
-        <div className="mt-auto flex items-end justify-between gap-3 pt-1">
+        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-3">
           <PriceTag band={product.priceBand} size="md" hideCaption={isCompact || isHorizontal} />
           <Text
             as="span"
