@@ -242,7 +242,7 @@ export const products: readonly Product[] = [
     brandId: 'brand_havenhome' as BrandId,
     categoryId: 'cat_home_appliances' as CategoryId,
     headline: 'Cheap filters, honest coverage numbers',
-    image: { ...placeholderImage('havenhome-pure-300', 'png'), alt: 'Haven Home Pure 300 air purifier' },
+    image: {   src: '/images/products/haven-home-pure-300.png',   alt: 'Haven Home Pure 300 air purifier', },
     priceBand: { min: 18990, max: 22990, currency: 'INR' },
     rating: 4.4,
     reviewCount: 3105,
