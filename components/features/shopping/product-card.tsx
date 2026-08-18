@@ -99,7 +99,7 @@ function ProductCard({
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex min-h-[190px] flex-1 flex-col gap-3 p-4">
         <div className="flex flex-col gap-1">
           {brand ? (
             <Text as="span" size="xs" tone="muted" weight="medium" className="uppercase">
