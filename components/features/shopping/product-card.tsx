@@ -75,7 +75,7 @@ function ProductCard({
       className={cn('overflow-hidden', isHorizontal && 'flex-row', className)}
       {...props}
     >
-      <div className={cn('relative shrink-0', isHorizontal ? 'w-32 sm:w-40' : 'w-full')}>
+      <div   className={cn(     'relative shrink-0 overflow-hidden bg-muted',     isHorizontal ? 'w-32 sm:w-40' : 'h-48 w-full sm:h-52',   )} >
         <SmartImage
           asset={product.image}
           aspect={isHorizontal ? 'square' : '4/3'}
