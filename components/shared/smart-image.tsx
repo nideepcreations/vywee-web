@@ -5,7 +5,8 @@ import type { ImageAsset } from '@/types';
 
 import { cn } from '@/lib/utils';
 
-interface SmartImageProps extends Omit<ImageProps, 'src' | 'alt' | 'width' | 'height'> {
+interface SmartImageProps
+  extends Omit<ImageProps, 'src' | 'alt' | 'width' | 'height' | 'fill'> {
   asset: ImageAsset;
   /** Only the largest above-the-fold image on a route should set this. */
   priority?: boolean;
@@ -22,9 +23,10 @@ const ASPECT_CLASS = {
 } as const;
 
 /**
- * Wraps next/image with the project's defaults: lazy by default, responsive
- * sizes, blur placeholder when the asset provides one, and a fixed aspect box
- * so images never cause layout shift.
+ * Responsive product image wrapper.
+ *
+ * The image uses Next/Image fill mode so it always occupies the complete
+ * image container. The container owns the aspect ratio and clipping.
  */
 function SmartImage({
   asset,
@@ -38,7 +40,7 @@ function SmartImage({
   return (
     <div
       className={cn(
-        'relative overflow-hidden bg-muted',
+        'relative w-full overflow-hidden bg-muted',
         ASPECT_CLASS[aspect],
         containerClassName,
       )}
@@ -46,14 +48,13 @@ function SmartImage({
       <Image
         src={asset.src}
         alt={asset.alt}
-        width={asset.width}
-        height={asset.height}
+        fill
         sizes={sizes}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         placeholder={asset.blurDataURL ? 'blur' : 'empty'}
         blurDataURL={asset.blurDataURL}
-        className={cn('size-full object-cover object-center scale-[1.2]', className)}
+        className={cn('object-cover object-center', className)}
         {...props}
       />
     </div>
