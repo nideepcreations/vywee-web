@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 interface SmartImageProps
   extends Omit<ImageProps, 'src' | 'alt' | 'width' | 'height' | 'fill'> {
   asset: ImageAsset;
-  /** Only the largest above-the-fold image on a route should set this. */
   priority?: boolean;
   className?: string;
   containerClassName?: string;
@@ -22,12 +21,6 @@ const ASPECT_CLASS = {
   auto: '',
 } as const;
 
-/**
- * Responsive product image wrapper.
- *
- * The image uses Next/Image fill mode so it always occupies the complete
- * image container. The container owns the aspect ratio and clipping.
- */
 function SmartImage({
   asset,
   priority = false,
@@ -45,18 +38,20 @@ function SmartImage({
         containerClassName,
       )}
     >
-      <Image
-        src={asset.src}
-        alt={asset.alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        placeholder={asset.blurDataURL ? 'blur' : 'empty'}
-        blurDataURL={asset.blurDataURL}
-        className={cn('object-cover object-center', className)}
-        {...props}
-      />
+      <div className="absolute inset-4 overflow-hidden rounded-sm">
+        <Image
+          src={asset.src}
+          alt={asset.alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? 'eager' : 'lazy'}
+          placeholder={asset.blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={asset.blurDataURL}
+          className={cn('object-contain object-center', className)}
+          {...props}
+        />
+      </div>
     </div>
   );
 }
