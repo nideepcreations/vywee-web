@@ -53,7 +53,7 @@ function SmartImage({
         loading={priority ? 'eager' : 'lazy'}
         placeholder={asset.blurDataURL ? 'blur' : 'empty'}
         blurDataURL={asset.blurDataURL}
-        className={cn('size-full object-cover object-center', className)}
+        className={cn('size-full object-cover object-center scale-[1.2]', className)}
         {...props}
       />
     </div>
