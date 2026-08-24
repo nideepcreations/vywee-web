@@ -21,6 +21,11 @@ const ASPECT_CLASS = {
   auto: '',
 } as const;
 
+/**
+ * Wraps next/image with the project's defaults: lazy by default, responsive
+ * sizes, blur placeholder when the asset provides one, and a fixed aspect box
+ * so images never cause layout shift.
+ */
 function SmartImage({
   asset,
   priority = false,
@@ -48,10 +53,7 @@ function SmartImage({
         loading={priority ? 'eager' : 'lazy'}
         placeholder={asset.blurDataURL ? 'blur' : 'empty'}
         blurDataURL={asset.blurDataURL}
-        className={cn(
-          'h-full w-[133.333%] max-w-none object-cover object-left',
-          className,
-        )}
+        className={cn('size-full object-cover object-center', className)}
         {...props}
       />
     </div>
