@@ -9,5 +9,9 @@ declare namespace NodeJS {
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly NEXT_PUBLIC_SITE_URL?: string;
     readonly NEXT_PUBLIC_ANALYTICS_ID?: string;
+    /** Server-only. Enables real AI search when set; falls back to rule-based
+     *  interpretation when absent. Never exposed to the client. */
+    readonly OPENAI_API_KEY?: string;
+    readonly OPENAI_SEARCH_MODEL?: string;
   }
 }

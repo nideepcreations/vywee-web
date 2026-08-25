@@ -79,7 +79,7 @@ function SectionHeader({
   return (
     <div
       className={cn(
-        'mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between',
+        'mb-6 flex flex-col gap-4 md:mb-7 md:flex-row md:items-end md:justify-between',
         align === 'center' && 'md:flex-col md:items-center md:text-center',
         className,
       )}

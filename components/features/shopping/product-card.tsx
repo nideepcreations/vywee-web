@@ -75,7 +75,12 @@ function ProductCard({
       className={cn('overflow-hidden', isHorizontal && 'flex-row', className)}
       {...props}
     >
-      <div className={cn('relative shrink-0', isHorizontal ? 'w-32 sm:w-40' : 'w-full')}>
+      <div
+        className={cn(
+          'relative shrink-0 overflow-hidden bg-muted',
+          isHorizontal ? 'w-32 sm:w-40' : 'h-48 w-full sm:h-52',
+        )}
+      >
         <SmartImage
           asset={product.image}
           aspect={isHorizontal ? 'square' : '4/3'}
@@ -83,7 +88,7 @@ function ProductCard({
           sizes={
             isHorizontal
               ? '160px'
-              : '(min-width: 1280px) 300px, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw'
+              : '(min-width: 1280px) 300px, (min-width: 768px) 25vw, (min-width: 640px) 50vw, 100vw'
           }
           containerClassName="h-full"
         />
@@ -99,7 +104,7 @@ function ProductCard({
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex min-h-[190px] flex-1 flex-col gap-3 p-4">
         <div className="flex flex-col gap-1">
           {brand ? (
             <Text as="span" size="xs" tone="muted" weight="medium" className="uppercase">
@@ -126,7 +131,7 @@ function ProductCard({
 
         <Rating value={product.rating} count={product.reviewCount} size="sm" />
 
-        <div className="mt-auto flex items-end justify-between gap-3 pt-1">
+        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-3">
           <PriceTag band={product.priceBand} size="md" hideCaption={isCompact || isHorizontal} />
           <Text
             as="span"

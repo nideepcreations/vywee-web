@@ -1,7 +1,7 @@
 import type { BrandId, CategoryId, Product, ProductId } from '@/types';
 
 const placeholderImage = (name: string) => ({
-  src: `/images/products/${name}.svg`,
+  src: `/images/products/${name}.png`,
   alt: '',
   width: 1200,
   height: 900,
@@ -19,7 +19,12 @@ export const products: readonly Product[] = [
     brandId: 'brand_sonova' as BrandId,
     categoryId: 'cat_headphones' as CategoryId,
     headline: 'The noise cancelling to beat under ₹30,000',
-    image: { ...placeholderImage('sonova-arc-900'), alt: 'Sonova Arc 900 over-ear headphones' },
+    image: {
+      src: '/images/products/sonova-arc-900.png',
+      alt: 'Sonova Arc 900 over-ear headphones',
+      width: 1200,
+      height: 900,
+    },
     priceBand: { min: 24990, max: 28990, currency: 'INR' },
     rating: 4.6,
     reviewCount: 2814,
@@ -51,7 +56,12 @@ export const products: readonly Product[] = [
     brandId: 'brand_sonova' as BrandId,
     categoryId: 'cat_headphones' as CategoryId,
     headline: 'Open-ear buds that stay put on a run',
-    image: { ...placeholderImage('sonova-clip-2'), alt: 'Sonova Clip 2 open-ear earbuds' },
+    image: {
+      src: '/images/products/sonova-clip-2.png',
+      alt: 'Sonova Clip 2 open-ear earbuds',
+      width: 1200,
+      height: 900,
+    },
     priceBand: { min: 7499, max: 9499, currency: 'INR' },
     rating: 4.2,
     reviewCount: 1190,
@@ -242,7 +252,12 @@ export const products: readonly Product[] = [
     brandId: 'brand_havenhome' as BrandId,
     categoryId: 'cat_home_appliances' as CategoryId,
     headline: 'Cheap filters, honest coverage numbers',
-    image: { ...placeholderImage('havenhome-pure-300'), alt: 'Haven Home Pure 300 air purifier' },
+    image: {
+      src: '/images/products/haven-home-pure-300.png',
+      alt: 'Haven Home Pure 300 air purifier',
+      width: 1200,
+      height: 900,
+    },
     priceBand: { min: 18990, max: 22990, currency: 'INR' },
     rating: 4.4,
     reviewCount: 3105,

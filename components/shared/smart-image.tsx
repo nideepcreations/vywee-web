@@ -5,9 +5,8 @@ import type { ImageAsset } from '@/types';
 
 import { cn } from '@/lib/utils';
 
-interface SmartImageProps extends Omit<ImageProps, 'src' | 'alt' | 'width' | 'height'> {
+interface SmartImageProps extends Omit<ImageProps, 'src' | 'alt' | 'width' | 'height' | 'fill'> {
   asset: ImageAsset;
-  /** Only the largest above-the-fold image on a route should set this. */
   priority?: boolean;
   className?: string;
   containerClassName?: string;
@@ -21,39 +20,37 @@ const ASPECT_CLASS = {
   auto: '',
 } as const;
 
-/**
- * Wraps next/image with the project's defaults: lazy by default, responsive
- * sizes, blur placeholder when the asset provides one, and a fixed aspect box
- * so images never cause layout shift.
- */
 function SmartImage({
   asset,
   priority = false,
   className,
   containerClassName,
   aspect = '4/3',
-  // Mirrors the catalogue grids: 4-up from 1280, 3-up from 1024, 2-up from
-  // 640, single column below. Call sites with a different layout pass their own.
   sizes = '(min-width: 1280px) 320px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw',
   ...props
 }: SmartImageProps) {
   return (
     <div
-      className={cn('relative overflow-hidden bg-muted', ASPECT_CLASS[aspect], containerClassName)}
+      className={cn(
+        'relative w-full overflow-hidden bg-muted',
+        ASPECT_CLASS[aspect],
+        containerClassName,
+      )}
     >
-      <Image
-        src={asset.src}
-        alt={asset.alt}
-        width={asset.width}
-        height={asset.height}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        placeholder={asset.blurDataURL ? 'blur' : 'empty'}
-        blurDataURL={asset.blurDataURL}
-        className={cn('size-full object-cover', className)}
-        {...props}
-      />
+      <div className="absolute inset-4 overflow-hidden rounded-sm">
+        <Image
+          src={asset.src}
+          alt={asset.alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          loading={priority ? 'eager' : 'lazy'}
+          placeholder={asset.blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={asset.blurDataURL}
+          className={cn('scale-[1.45] object-contain object-center', className)}
+          {...props}
+        />
+      </div>
     </div>
   );
 }

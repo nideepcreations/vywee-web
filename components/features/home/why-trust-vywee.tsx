@@ -42,7 +42,13 @@ const TRUST_POINTS: readonly TrustPoint[] = [
 
 function WhyTrustVywee() {
   return (
-    <Section spacing="lg" surface="muted" bordered aria-labelledby="trust-heading">
+    <Section
+      spacing="lg"
+      surface="muted"
+      bordered
+      containerSize="wide"
+      aria-labelledby="trust-heading"
+    >
       <SectionHeader
         eyebrow="How this works"
         title="Why trust Vywee"
