@@ -8,7 +8,7 @@ import { createMetadata } from '@/lib/seo';
 export const metadata = createMetadata({
   title: 'About',
   path: ROUTES.about,
-  description: `What ${SITE.name} is for, how research is done, and how the site pays for itself.`,
+  description: `Why the name Vywee, what ${SITE.name} is for, and how the site pays for itself.`,
 });
 
 export default function AboutPage() {
@@ -20,6 +20,20 @@ export default function AboutPage() {
       size="prose"
     >
       <Container size="prose" className="flex flex-col gap-8 pt-8">
+        <section>
+          <Heading as="h2" level="h3" className="mb-3">
+            Why &ldquo;Vywee&rdquo;
+          </Heading>
+          <Text leading="relaxed">
+            Say it out loud and it sounds like &ldquo;why we&rdquo; — and that is the whole idea.
+            Most shopping sites will tell you <em>what</em> to buy. We built this one around a
+            different question: <em>why</em>. Why this one and not the cheaper one. Why the rating
+            is high but the return rate isn&rsquo;t. Why a pick that made sense in June
+            doesn&rsquo;t anymore. If we can&rsquo;t answer why, we don&rsquo;t make the
+            recommendation — that rule shows up everywhere on this site, not just in the name.
+          </Text>
+        </section>
+
         <section>
           <Heading as="h2" level="h3" className="mb-3">
             What we do
