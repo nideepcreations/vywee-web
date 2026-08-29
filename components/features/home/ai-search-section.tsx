@@ -18,6 +18,16 @@ const EXAMPLE_QUERIES: readonly string[] = [
   'Best smartwatch for fitness',
 ];
 
+/** Tinted pill per example, cycling through the same palette the bento tiles
+ *  use — subtle rather than solid, since these are small tag-like chips
+ *  rather than feature surfaces. */
+const CHIP_TONES = [
+  'border-transparent bg-brand-subtle text-brand-on-subtle hover:bg-brand-subtle-hover',
+  'border-transparent bg-accent-subtle text-accent-on-subtle hover:bg-accent-subtle',
+  'border-transparent bg-highlight-subtle text-highlight-on-subtle hover:bg-highlight-subtle',
+  'border-transparent bg-success-subtle text-success-on-subtle hover:bg-success-subtle',
+] as const;
+
 export interface AiSearchSectionProps {
   /**
    * Overrides the default behaviour. Left unset, submitting a query navigates
@@ -98,17 +108,16 @@ function AiSearchSection({ onSearch }: AiSearchSectionProps) {
             </Text>
 
             <ul className="flex flex-wrap gap-2">
-              {EXAMPLE_QUERIES.map((example) => (
+              {EXAMPLE_QUERIES.map((example, index) => (
                 <li key={example}>
                   <button
                     type="button"
                     onClick={() => applyExample(example)}
                     className={cn(
-                      'inline-flex min-h-12 items-center rounded-pill border border-border bg-surface px-4',
-                      'text-sm text-muted-foreground',
-                      'transition-colors duration-fast ease-standard',
-                      'hover:border-border-strong hover:text-foreground',
+                      'inline-flex min-h-12 items-center rounded-pill border px-4 font-medium',
+                      'text-sm transition-colors duration-fast ease-standard',
                       'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+                      CHIP_TONES[index % CHIP_TONES.length],
                     )}
                   >
                     {example}

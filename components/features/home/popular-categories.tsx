@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-import { CategoryCard } from '@/components/features/shopping/category-card';
+import { CategoryCard, tileTone } from '@/components/features/shopping/category-card';
 import { Section, SectionHeader } from '@/components/layout/section';
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
@@ -35,9 +35,9 @@ function PopularCategories() {
       />
 
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-        {featuredCategories.map((category) => (
+        {featuredCategories.map((category, index) => (
           <li key={category.id}>
-            <CategoryCard category={category} layout="tile" headingAs="h3" />
+            <CategoryCard category={category} layout="tile" headingAs="h3" tone={tileTone(index)} />
           </li>
         ))}
       </ul>

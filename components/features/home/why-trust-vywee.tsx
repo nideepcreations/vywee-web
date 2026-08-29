@@ -5,12 +5,23 @@ import { Card } from '@/components/ui/card';
 import { Icon } from '@/components/ui/icon';
 import { Heading, Text } from '@/components/ui/typography';
 import { type IconName } from '@/constants/icons';
+import { cn } from '@/lib/utils';
 
 interface TrustPoint {
   readonly icon: IconName;
   readonly title: string;
   readonly body: string;
 }
+
+/** Bold icon-chip fill per point — same rotation as the category tiles and
+ *  search chips, so the palette reads as one deliberate system rather than
+ *  four different treatments per section. */
+const ICON_TONES = [
+  'bg-brand text-brand-foreground',
+  'bg-accent text-accent-foreground',
+  'bg-highlight text-highlight-foreground',
+  'bg-success text-success-foreground',
+] as const;
 
 /**
  * Each point says what Vywee does, in terms that could be checked. "Honest
@@ -59,10 +70,15 @@ function WhyTrustVywee() {
       />
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {TRUST_POINTS.map((point) => (
+        {TRUST_POINTS.map((point, index) => (
           <li key={point.title}>
             <Card variant="outline" padding="lg" className="h-full gap-3 bg-background">
-              <span className="inline-flex size-11 items-center justify-center rounded-md bg-brand-subtle text-brand-on-subtle">
+              <span
+                className={cn(
+                  'inline-flex size-11 items-center justify-center rounded-md',
+                  ICON_TONES[index % ICON_TONES.length],
+                )}
+              >
                 <Icon name={point.icon} size="md" />
               </span>
               <Heading as="h3" level="h4">
