@@ -21,7 +21,7 @@ function TrendingProducts() {
       spacing="lg"
       surface="muted"
       bordered
-      containerSize="wide"
+      containerSize="full"
       aria-labelledby="trending-heading"
     >
       <SectionHeader

@@ -75,7 +75,7 @@ function AiSearchSection({ onSearch }: AiSearchSectionProps) {
           homepage section — this previously hand-rolled its own padding scale
           (px-6/12/20/28), which put its left edge at a different x-position
           than the rest of the page. */}
-      <Container size="wide" className="py-20 md:py-28">
+      <Container size="full" className="py-20 md:py-28">
         <div className="flex flex-col gap-10">
           <div className="max-w-4xl">
             <Heading as="h2" level="h2">

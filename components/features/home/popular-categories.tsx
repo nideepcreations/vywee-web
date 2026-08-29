@@ -19,7 +19,7 @@ function PopularCategories() {
       spacing="lg"
       surface="muted"
       bordered
-      containerSize="wide"
+      containerSize="full"
       aria-labelledby="popular-categories-heading"
     >
       <SectionHeader

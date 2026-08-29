@@ -57,7 +57,7 @@ function WhyTrustVywee() {
       spacing="lg"
       surface="muted"
       bordered
-      containerSize="wide"
+      containerSize="full"
       aria-labelledby="trust-heading"
     >
       <SectionHeader

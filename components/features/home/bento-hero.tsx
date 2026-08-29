@@ -208,7 +208,7 @@ function BentoHero() {
 
   return (
     <div className="w-full pt-6 pb-2 md:pt-8">
-      <Container size="wide">
+      <Container size="full">
         <PromoStrip />
 
         <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
