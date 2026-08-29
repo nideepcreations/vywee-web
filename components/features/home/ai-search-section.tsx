@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
+import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { SearchInput } from '@/components/ui/search-input';
@@ -70,7 +71,11 @@ function AiSearchSection({ onSearch }: AiSearchSectionProps) {
       id={AI_SEARCH_ANCHOR.replace('#', '')}
       className="scroll-mt-24 border-b border-border bg-background"
     >
-      <div className="w-full px-6 py-20 md:px-12 md:py-28 lg:px-20 xl:px-28">
+      {/* Uses the same "wide" container as the header, footer and every other
+          homepage section — this previously hand-rolled its own padding scale
+          (px-6/12/20/28), which put its left edge at a different x-position
+          than the rest of the page. */}
+      <Container size="wide" className="py-20 md:py-28">
         <div className="flex flex-col gap-10">
           <div className="max-w-4xl">
             <Heading as="h2" level="h2">
@@ -131,7 +136,7 @@ function AiSearchSection({ onSearch }: AiSearchSectionProps) {
             {status}
           </p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
