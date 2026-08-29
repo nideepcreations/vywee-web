@@ -33,7 +33,7 @@ import { cn } from '@/lib/utils';
  */
 function BentoHero() {
   const pick = editorsPicks[0];
-  const secondaryPicks = editorsPicks.slice(1, 3);
+  const secondaryPicks = editorsPicks.slice(1, 5);
   const spotlightCategory = featuredCategories[0];
   const pickBrand = pick ? getBrandForProduct(pick) : undefined;
   const pickOffer = pick ? getOffersForProduct(pick.id)[0] : undefined;
@@ -41,7 +41,7 @@ function BentoHero() {
   return (
     <div className="w-full pt-10 pb-4 md:pt-14">
       <Container size="wide">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-[220px_220px]">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-[190px_190px]">
           {/* Hero tile — dark, spans 2x2 at lg */}
           <div className="col-span-1 row-span-1 flex flex-col justify-between rounded-2xl bg-foreground p-8 text-background lg:col-span-2 lg:row-span-2 lg:p-10">
             <div className="flex flex-col gap-4">
@@ -172,7 +172,7 @@ function BentoHero() {
 
         {/* Second row: two more picks + a guide, plain 3-up */}
         {secondaryPicks.length > 0 ? (
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {secondaryPicks.map((product) => {
               const brand = getBrandForProduct(product);
               return (
