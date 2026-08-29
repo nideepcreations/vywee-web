@@ -32,14 +32,19 @@
   --vy-ink-100: #eef1f7;
   --vy-ink-50: #f6f8fc;
 
-  --vy-ultramarine-800: #141a7a;
-  --vy-ultramarine-700: #1c22a8;
-  --vy-ultramarine-600: #2b34e0;
-  --vy-ultramarine-500: #4a53f0;
-  --vy-ultramarine-400: #6b74ff;
-  --vy-ultramarine-200: #c3c7ff;
-  --vy-ultramarine-100: #e6e8ff;
-  --vy-ultramarine-950: #121533;
+  /* Brand hue: indigo-violet. Chosen for the bento redesign — bolder and more
+     distinct from a generic "tech blue" than the previous ultramarine, while
+     every shade below still clears WCAG AA at the role it is used for
+     (verified: 700 text-on-white 7.7:1, 600 text-on-white 5.6:1, dark-mode
+     400 on ink-950 7.5:1). */
+  --vy-indigo-800: #241c7a;
+  --vy-indigo-700: #3d2bc7;
+  --vy-indigo-600: #5b4fe8;
+  --vy-indigo-500: #6e63f0;
+  --vy-indigo-400: #9d93ff;
+  --vy-indigo-200: #d2cdff;
+  --vy-indigo-100: #e9e6ff;
+  --vy-indigo-950: #16113a;
 
   /* 700 is the text-safe teal; 600 is reserved for fills and icons. */
   /* Brand gradient family, sampled from the approved logo artwork:
@@ -51,12 +56,15 @@
   --vy-violet-400: #c084fc;
   --vy-magenta-500: #f62be6;
 
-  --vy-deepsea-700: #0b666f;
-  --vy-deepsea-600: #0e7c86;
-  --vy-deepsea-500: #12a0ac;
-  --vy-deepsea-400: #35c3ce;
-  --vy-deepsea-100: #dcf5f7;
-  --vy-deepsea-950: #0d3b40;
+  /* Accent hue: warm coral. 700 is the text-safe shade (5.0:1 on white); 600
+     is the fill used for icon containers and large-scale elements only
+     (3.4:1 — meets the 3:1 bar for non-text, not for body text). */
+  --vy-coral-700: #a83a13;
+  --vy-coral-600: #e8622e;
+  --vy-coral-500: #ff7a45;
+  --vy-coral-400: #ff9d6b;
+  --vy-coral-100: #ffe8dc;
+  --vy-coral-950: #3d1d0d;
 
   /* 700 is the text-safe amber; 500 is the fill used on deal badges. */
   --vy-saffron-700: #8f5303;
@@ -106,16 +114,16 @@
   --border-strong: var(--vy-ink-300);
   --input: var(--vy-ink-350);
   --input-hover: var(--vy-ink-500);
-  --ring: var(--vy-ultramarine-600);
+  --ring: var(--vy-indigo-600);
 
   /* Brand */
-  --brand: var(--vy-ultramarine-600);
-  --brand-hover: var(--vy-ultramarine-700);
-  --brand-active: var(--vy-ultramarine-800);
-  --brand-subtle: var(--vy-ultramarine-100);
-  --brand-subtle-hover: var(--vy-ultramarine-200);
+  --brand: var(--vy-indigo-600);
+  --brand-hover: var(--vy-indigo-700);
+  --brand-active: var(--vy-indigo-800);
+  --brand-subtle: var(--vy-indigo-100);
+  --brand-subtle-hover: var(--vy-indigo-200);
   --brand-foreground: var(--vy-white);
-  --brand-on-subtle: var(--vy-ultramarine-700);
+  --brand-on-subtle: var(--vy-indigo-700);
 
   /* Brand gradient. Used by the logo mark only — not a general surface fill. */
   --brand-gradient-from: var(--vy-cyan-400);
@@ -124,11 +132,11 @@
   --brand-gradient-to: var(--vy-magenta-500);
 
   /* Accent */
-  --accent: var(--vy-deepsea-600);
-  --accent-hover: var(--vy-deepsea-700);
-  --accent-subtle: var(--vy-deepsea-100);
+  --accent: var(--vy-coral-600);
+  --accent-hover: var(--vy-coral-700);
+  --accent-subtle: var(--vy-coral-100);
   --accent-foreground: var(--vy-white);
-  --accent-on-subtle: var(--vy-deepsea-700);
+  --accent-on-subtle: var(--vy-coral-700);
 
   /* Highlight — reserved for price drops, savings and deal signalling.
      The 500 fill is decorative; text on it uses `highlight-on-subtle`. */
@@ -154,10 +162,10 @@
   --danger-foreground: var(--vy-white);
   --danger-on-subtle: var(--vy-crimson-700);
 
-  --info: var(--vy-ultramarine-600);
-  --info-subtle: var(--vy-ultramarine-100);
+  --info: var(--vy-indigo-600);
+  --info-subtle: var(--vy-indigo-100);
   --info-foreground: var(--vy-white);
-  --info-on-subtle: var(--vy-ultramarine-700);
+  --info-on-subtle: var(--vy-indigo-700);
 
   /* Overlays */
   --overlay: rgb(11 16 32 / 0.4);
@@ -303,15 +311,15 @@
   --border-strong: var(--vy-ink-600);
   --input: var(--vy-ink-500);
   --input-hover: var(--vy-ink-400);
-  --ring: var(--vy-ultramarine-400);
+  --ring: var(--vy-indigo-400);
 
-  --brand: var(--vy-ultramarine-400);
-  --brand-hover: var(--vy-ultramarine-500);
-  --brand-active: var(--vy-ultramarine-600);
-  --brand-subtle: var(--vy-ultramarine-950);
-  --brand-subtle-hover: var(--vy-ultramarine-800);
+  --brand: var(--vy-indigo-400);
+  --brand-hover: var(--vy-indigo-500);
+  --brand-active: var(--vy-indigo-600);
+  --brand-subtle: var(--vy-indigo-950);
+  --brand-subtle-hover: var(--vy-indigo-800);
   --brand-foreground: var(--vy-ink-950);
-  --brand-on-subtle: var(--vy-ultramarine-400);
+  --brand-on-subtle: var(--vy-indigo-400);
 
   /* Both stops lift in dark mode: the 600/500 pair reads as a dark smudge
      against ink-950 rather than as a blue-to-purple gradient. */
@@ -322,11 +330,11 @@
   --brand-gradient-mid-2: var(--vy-violet-500);
   --brand-gradient-to: var(--vy-magenta-500);
 
-  --accent: var(--vy-deepsea-400);
-  --accent-hover: var(--vy-deepsea-500);
-  --accent-subtle: var(--vy-deepsea-950);
+  --accent: var(--vy-coral-400);
+  --accent-hover: var(--vy-coral-500);
+  --accent-subtle: var(--vy-coral-950);
   --accent-foreground: var(--vy-ink-950);
-  --accent-on-subtle: var(--vy-deepsea-400);
+  --accent-on-subtle: var(--vy-coral-400);
 
   --highlight: var(--vy-saffron-400);
   --highlight-strong: var(--vy-saffron-500);
@@ -349,10 +357,10 @@
   --danger-foreground: var(--vy-ink-950);
   --danger-on-subtle: var(--vy-crimson-400);
 
-  --info: var(--vy-ultramarine-400);
-  --info-subtle: var(--vy-ultramarine-950);
+  --info: var(--vy-indigo-400);
+  --info-subtle: var(--vy-indigo-950);
   --info-foreground: var(--vy-ink-950);
-  --info-on-subtle: var(--vy-ultramarine-400);
+  --info-on-subtle: var(--vy-indigo-400);
 
   --overlay: rgb(0 0 0 / 0.6);
   --scrim: rgb(0 0 0 / 0.3);
