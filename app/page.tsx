@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 
 import { AiSearchSection } from '@/components/features/home/ai-search-section';
 import { BentoHero } from '@/components/features/home/bento-hero';
-import { BuyingGuides } from '@/components/features/home/buying-guides';
-import { PopularCategories } from '@/components/features/home/popular-categories';
 import { TrendingProducts } from '@/components/features/home/trending-products';
 import { WhyTrustVywee } from '@/components/features/home/why-trust-vywee';
 import { JsonLd } from '@/components/shared/json-ld';
@@ -29,12 +27,14 @@ export const metadata: Metadata = createMetadata({
  * card comes from the shopping feature. Nothing here renders a product,
  * category or guide directly.
  *
- * `BentoHero` replaces the previous single-column hero and absorbs the old
- * "Vywee Choice" section's job — it already surfaces the top editors' picks,
- * so that section was removed rather than repeating the same products twice
- * on one page. `hero-section.tsx` and `vywee-choice.tsx` are left in the
- * codebase, just unused from this route, in case either layout is wanted
- * again elsewhere.
+ * `BentoHero` is a dense promo-strip-plus-aisles opener (categories,
+ * editors' picks, live offers, guides all shown as compact tile grids) and
+ * absorbs three of the sections that used to run the length of the page:
+ * "Vywee Choice", `PopularCategories` and `BuyingGuides`. Each is now
+ * redundant below the aisle that already shows the same content — keeping
+ * both would repeat the same categories and guides twice on one page. All
+ * three files are left in the codebase, just unused from this route, in
+ * case any of their fuller layouts are wanted again elsewhere.
  *
  * Header and Footer are supplied by the root layout, so sections 1 and 9 of
  * the brief are already in place around this tree.
@@ -44,9 +44,7 @@ export default function HomePage() {
     <>
       <BentoHero />
       <AiSearchSection />
-      <PopularCategories />
       <TrendingProducts />
-      <BuyingGuides />
       <WhyTrustVywee />
 
       <JsonLd
