@@ -39,7 +39,7 @@ export default function BrandsPage() {
       description="Who makes what, and what each one is actually known for."
       meta={<Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Brands' }]} />}
     >
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <SectionHeader
           title="Featured brands"
           headingAs="h2"
@@ -61,7 +61,7 @@ export default function BrandsPage() {
         </ul>
       </Section>
 
-      <Section spacing="md" surface="muted" bordered>
+      <Section spacing="md" surface="muted" bordered containerSize="full">
         <SectionHeader
           title="All brands"
           headingAs="h2"

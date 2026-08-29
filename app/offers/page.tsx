@@ -59,7 +59,7 @@ export default function OffersPage() {
       description="Savings we have verified on products we have researched. Every one shows what it is and when it ends."
       meta={<Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Offers' }]} />}
     >
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <ResultCount count={live.length} noun="live offer" className="mb-5" />
 
         {live.length === 0 ? (
@@ -86,7 +86,7 @@ export default function OffersPage() {
       </Section>
 
       {expired.length > 0 ? (
-        <Section spacing="md" surface="muted" bordered>
+        <Section spacing="md" surface="muted" bordered containerSize="full">
           <SectionHeader
             title="Recently expired"
             headingAs="h2"

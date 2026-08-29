@@ -77,7 +77,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
       description="Everything we have researched so far, with tracked price ranges and an honest verdict on each."
       meta={<Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Products' }]} />}
     >
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <div className="flex flex-col gap-5">
           <FilterChips
             legend="Filter by department"

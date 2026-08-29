@@ -96,7 +96,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
       }
     >
       {isDepartment && children.length > 0 ? (
-        <Section spacing="md">
+        <Section spacing="md" containerSize="full">
           <SectionHeader
             title={`Categories in ${category.name}`}
             headingAs="h2"
@@ -113,7 +113,12 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         </Section>
       ) : null}
 
-      <Section spacing="md" surface={isDepartment ? 'muted' : 'none'} bordered={isDepartment}>
+      <Section
+        spacing="md"
+        surface={isDepartment ? 'muted' : 'none'}
+        bordered={isDepartment}
+        containerSize="full"
+      >
         <SectionHeader
           title={isDepartment ? `Everything in ${category.name}` : 'Products'}
           headingAs="h2"
@@ -149,7 +154,12 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
       </Section>
 
       {guides.length > 0 ? (
-        <Section spacing="md" surface={isDepartment ? 'none' : 'muted'} bordered>
+        <Section
+          spacing="md"
+          surface={isDepartment ? 'none' : 'muted'}
+          bordered
+          containerSize="full"
+        >
           <SectionHeader
             title="Guides for this category"
             headingAs="h2"

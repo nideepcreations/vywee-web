@@ -128,7 +128,7 @@ export default async function GuidePage({ params }: PageProps) {
       </Container>
 
       {recommended.length > 0 ? (
-        <Section spacing="md" surface="muted" bordered className="mt-14">
+        <Section spacing="md" surface="muted" bordered containerSize="full" className="mt-14">
           <Heading as="h2" id="recommended-heading" level="h3" className="mb-5">
             What we recommend
           </Heading>

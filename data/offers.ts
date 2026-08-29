@@ -6,20 +6,20 @@ export const offers: readonly Offer[] = [
     slug: 'sonova-arc-900-launch-price',
     name: '₹4,000 off the Sonova Arc 900',
     kind: 'price-drop',
-    retailer: 'Amazon India',
+    retailer: 'Retailly',
     description: 'Lowest tracked price since launch. Stock has moved quickly at this level before.',
     flatDiscount: 4000,
     brandId: 'brand_sonova' as BrandId,
     productIds: ['prod_sonova_arc_900' as ProductId],
     startsAt: '2026-07-28T00:00:00.000Z',
-    expiresAt: '2026-08-11T23:59:59.000Z',
+    expiresAt: '2027-02-28T23:59:59.000Z',
   },
   {
-    id: 'offer_hdfc_electronics' as OfferId,
-    slug: 'hdfc-card-electronics-offer',
-    name: '10% instant discount with HDFC cards',
+    id: 'offer_bankcard_electronics' as OfferId,
+    slug: 'bankcard-electronics-offer',
+    name: '10% instant discount with select bank cards',
     kind: 'bank-offer',
-    retailer: 'Flipkart',
+    retailer: 'MarketNest',
     description: 'Applies to electronics above ₹15,000, capped at ₹3,000 per card per month.',
     discountPercent: 10,
     productIds: [
@@ -28,7 +28,7 @@ export const offers: readonly Offer[] = [
       'prod_pixelforge_view_27' as ProductId,
     ],
     startsAt: '2026-08-01T00:00:00.000Z',
-    expiresAt: '2026-08-31T23:59:59.000Z',
+    expiresAt: '2027-01-31T23:59:59.000Z',
   },
   {
     id: 'offer_purifier_bundle' as OfferId,
@@ -40,7 +40,7 @@ export const offers: readonly Offer[] = [
     brandId: 'brand_havenhome' as BrandId,
     productIds: ['prod_havenhome_pure_300' as ProductId],
     startsAt: '2026-07-15T00:00:00.000Z',
-    expiresAt: '2026-09-30T23:59:59.000Z',
+    expiresAt: '2027-03-31T23:59:59.000Z',
   },
   {
     id: 'offer_trail5_coupon' as OfferId,
@@ -54,7 +54,7 @@ export const offers: readonly Offer[] = [
     brandId: 'brand_northloop' as BrandId,
     productIds: ['prod_northloop_trail_5' as ProductId],
     startsAt: '2026-07-20T00:00:00.000Z',
-    expiresAt: '2026-08-20T23:59:59.000Z',
+    expiresAt: '2027-02-15T23:59:59.000Z',
   },
   {
     id: 'offer_phone_exchange' as OfferId,
@@ -67,7 +67,7 @@ export const offers: readonly Offer[] = [
     brandId: 'brand_lumen' as BrandId,
     productIds: ['prod_lumen_edge_7' as ProductId, 'prod_lumen_edge_7_pro' as ProductId],
     startsAt: '2026-07-01T00:00:00.000Z',
-    expiresAt: '2026-08-15T23:59:59.000Z',
+    expiresAt: '2027-01-15T23:59:59.000Z',
   },
 ];
 

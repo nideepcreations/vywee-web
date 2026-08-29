@@ -82,7 +82,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <PageWrapper withHeader={false}>
-      <Container className="pt-8 md:pt-10">
+      <Container size="full" className="pt-8 md:pt-10">
         <Breadcrumb
           items={[
             { label: 'Home', href: ROUTES.home },
@@ -93,7 +93,7 @@ export default async function ProductPage({ params }: PageProps) {
         />
       </Container>
 
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <SmartImage
             asset={product.image}
@@ -176,11 +176,11 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </Section>
 
-      <Section spacing="md" surface="muted" bordered>
+      <Section spacing="md" surface="muted" bordered containerSize="full">
         <ProductVerdict verdict={product.verdict} headingAs="h2" />
       </Section>
 
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <div className="grid gap-10 xl:grid-cols-[2fr_1fr]">
           <section aria-labelledby="specs-heading">
             <Heading as="h2" id="specs-heading" level="h3" className="mb-4">
@@ -215,7 +215,7 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </Section>
 
-      <Section spacing="md" surface="muted" bordered>
+      <Section spacing="md" surface="muted" bordered containerSize="full">
         <RelatedProducts products={related} brandFor={getBrandForProduct} />
       </Section>
 

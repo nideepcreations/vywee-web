@@ -83,7 +83,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
     : [];
 
   return (
-    <Container className="py-10">
+    <Container size="full" className="py-10">
       <Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Search' }]} />
 
       <Heading as="h1" level="h2" className="mt-4">

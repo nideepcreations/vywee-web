@@ -75,7 +75,7 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
         />
       }
     >
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         <dl className="mb-8 grid gap-4 sm:grid-cols-3">
           <div>
             <dt className="text-sm text-muted-foreground">Founded</dt>

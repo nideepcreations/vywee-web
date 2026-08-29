@@ -32,7 +32,7 @@ export default function GuidesPage() {
       description="What to check before you spend, written once and kept updated as products change."
       meta={<Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Guides' }]} />}
     >
-      <Section spacing="md">
+      <Section spacing="md" containerSize="full">
         {lead === undefined ? (
           <EmptyState
             title="No guides published yet"

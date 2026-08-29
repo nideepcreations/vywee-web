@@ -35,7 +35,7 @@ export default function CategoriesPage() {
       meta={<Breadcrumb items={[{ label: 'Home', href: ROUTES.home }, { label: 'Categories' }]} />}
     >
       <Section spacing="md" contained={false}>
-        <Container className="flex flex-col gap-12">
+        <Container size="full" className="flex flex-col gap-12">
           {departments.map(({ department, children, productCount }) => (
             <section key={department.id} aria-labelledby={`${department.slug}-heading`}>
               <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
