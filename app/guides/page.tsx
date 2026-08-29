@@ -49,7 +49,7 @@ export default function GuidesPage() {
               priority
             />
 
-            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
               {rest.map((guide) => (
                 <li key={guide.id}>
                   <BuyingGuideCard

@@ -52,7 +52,7 @@ export default function CategoriesPage() {
                 {department.description}
               </Text>
 
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-[repeat(auto-fill,minmax(190px,1fr))]">
                 <li>
                   <CategoryCard category={department} headingAs="h3" />
                 </li>

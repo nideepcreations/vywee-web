@@ -18,7 +18,7 @@ export default function ProductsLoading() {
           <Skeleton key={index} className="h-11 w-28 rounded-pill" />
         ))}
       </div>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(auto-fill,minmax(270px,1fr))]">
         {Array.from({ length: 8 }, (_, index) => (
           <Skeleton key={index} className="h-80 w-full rounded-lg" />
         ))}

@@ -34,7 +34,7 @@ function PopularCategories() {
         }
       />
 
-      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
         {featuredCategories.map((category, index) => (
           <li key={category.id}>
             <CategoryCard category={category} layout="tile" headingAs="h3" tone={tileTone(index)} />

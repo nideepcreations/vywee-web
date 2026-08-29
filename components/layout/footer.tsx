@@ -15,7 +15,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-surface">
+    <footer className="dark mt-auto border-t border-border bg-background">
       <Container size="full" className="w-full py-12 md:py-16">
         {/* Main footer area */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_repeat(3,1fr)] md:gap-12 lg:gap-20">

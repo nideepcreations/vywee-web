@@ -99,7 +99,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
             className="mt-8"
           />
         ) : (
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(auto-fill,minmax(270px,1fr))]">
             {visible.map((product, index) => (
               <li key={product.id}>
                 <ProductCard

@@ -64,8 +64,7 @@ export default async function OpengraphImage() {
           display: 'flex',
           height: '10px',
           width: '100%',
-          backgroundImage:
-            'linear-gradient(90deg, #25D6FF 0%, #1F79FF 30%, #8A20F2 60%, #F62BE6 100%)',
+          backgroundImage: 'linear-gradient(90deg, #2A3B7D 0%, #5B6FC4 50%, #C3CCEA 100%)',
         }}
       />
     </div>,

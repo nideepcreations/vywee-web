@@ -33,7 +33,7 @@ function BuyingGuides() {
         }
       />
 
-      <ul className="grid gap-5 md:grid-cols-3">
+      <ul className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
         {guides.map((guide) => (
           <li key={guide.id}>
             <BuyingGuideCard

@@ -96,8 +96,13 @@
    * ============================================================= */
   color-scheme: light;
 
-  /* Surfaces, in ascending elevation */
-  --background: var(--vy-white);
+  /* Surfaces, in ascending elevation. Background is a light grey rather than
+     pure white (matches the reference: Amazon's product-grid background is
+     #EAEDED) — cards read as distinct surfaces without needing a border to
+     do all the work. --surface and --elevated stay lighter than
+     --background, so the elevation direction (base -> surface -> elevated)
+     still goes light-to-lighter, not backwards. */
+  --background: var(--vy-ink-100);
   --foreground: var(--vy-ink-900);
   --surface: var(--vy-ink-50);
   --surface-foreground: var(--vy-ink-900);

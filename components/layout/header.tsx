@@ -33,8 +33,14 @@ function Header({ authSlot }: HeaderProps) {
     <header
       data-scrolled={isScrolled || undefined}
       className={cn(
-        'sticky top-0 z-40 w-full',
-        'border-b border-transparent bg-background/80 backdrop-blur-md',
+        // `dark` scopes every descendant to the dark-theme tokens regardless
+        // of the visitor's own light/dark preference — the header is always
+        // this color, the same way it would be if it were a hardcoded hex,
+        // except every child (Logo, nav links, search input, theme toggle)
+        // automatically resolves to its correct dark-mode appearance instead
+        // of needing a special-cased "on dark chrome" variant of its own.
+        'dark sticky top-0 z-40 w-full bg-background',
+        'border-b border-transparent',
         'transition-[border-color,box-shadow] duration-base ease-standard',
         'data-[scrolled]:border-border data-[scrolled]:shadow-xs',
       )}

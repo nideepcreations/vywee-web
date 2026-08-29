@@ -103,7 +103,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             headingId="subcategories-heading"
             description="Narrow down before comparing individual products."
           />
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-[repeat(auto-fill,minmax(190px,1fr))]">
             {children.map((child) => (
               <li key={child.id}>
                 <CategoryCard category={child} headingAs="h3" />
@@ -137,7 +137,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
             description="This category is in the catalogue but has no finished research. Try the parent department."
           />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(auto-fill,minmax(270px,1fr))]">
             {products.map((product, index) => (
               <li key={product.id}>
                 <ProductCard

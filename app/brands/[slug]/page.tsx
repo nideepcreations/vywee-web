@@ -123,7 +123,7 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
             description="This brand is tracked but nothing from it has finished research. Browse the full catalogue instead."
           />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(auto-fill,minmax(270px,1fr))]">
             {products.map((product, index) => (
               <li key={product.id}>
                 <ProductCard

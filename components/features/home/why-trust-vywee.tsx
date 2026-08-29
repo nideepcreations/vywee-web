@@ -69,7 +69,7 @@ function WhyTrustVywee() {
         align="center"
       />
 
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {TRUST_POINTS.map((point, index) => (
           <li key={point.title}>
             <Card variant="outline" padding="lg" className="h-full gap-3 bg-background">

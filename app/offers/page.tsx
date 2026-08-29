@@ -68,7 +68,7 @@ export default function OffersPage() {
             description="Nothing worth flagging today. Offers are added as we verify them, so this page is worth another look next week."
           />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
             {live.map((offer) => (
               <li key={offer.id}>
                 <OfferCard
@@ -93,7 +93,7 @@ export default function OffersPage() {
             headingId="expired-offers-heading"
             description="Kept visible so you can tell whether a price you remember has already gone."
           />
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
             {expired.map((offer) => (
               <li key={offer.id}>
                 <OfferCard

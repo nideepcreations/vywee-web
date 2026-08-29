@@ -25,10 +25,11 @@ import { cn } from '@/lib/utils';
  * points into the fold instead of one big hero moment with a lot of
  * surrounding air:
  *
- * 1. A horizontally-scrolling promo strip — tight cards, small radius,
- *    minimal padding, edge-bled using the same gutter-bleed pattern
- *    `TrendingProducts` already uses so it's a consistent site idiom rather
- *    than a one-off.
+ * 1. A promo strip — tight cards, small radius, minimal padding. Renders as
+ *    a responsive grid (1/2/4 columns) that stretches to fill the available
+ *    width at every size, rather than a fixed-width horizontal scroller —
+ *    the fixed-width version left visible dead space on wide screens once
+ *    the page itself went full-width.
  * 2. A row of "aisle" widgets — a title with a chevron link to the full
  *    listing, and a compact 2x2 grid of small tiles inside. This is the
  *    Amazon "Bestselling Devices >" pattern: several categories of content
@@ -83,9 +84,9 @@ function PromoStrip() {
   }[];
 
   return (
-    <ul className="-mx-[var(--space-gutter)] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--space-gutter)] pb-2 lg:mx-0 lg:px-0">
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((card, index) => (
-        <li key={card.title} className="w-64 shrink-0 snap-start sm:w-72">
+        <li key={card.title}>
           <Link
             href={card.href}
             className={cn(

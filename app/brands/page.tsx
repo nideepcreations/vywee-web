@@ -46,7 +46,7 @@ export default function BrandsPage() {
           headingId="featured-brands-heading"
           description="Brands with a consistent record across the categories we research."
         />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
           {featured.map((brand) => (
             <li key={brand.id}>
               <BrandCard
@@ -68,7 +68,7 @@ export default function BrandsPage() {
           headingId="all-brands-heading"
           description="Everything else we track, A to Z."
         />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
           {others.map((brand) => (
             <li key={brand.id}>
               <BrandCard

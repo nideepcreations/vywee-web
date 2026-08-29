@@ -116,7 +116,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
             }
           />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(auto-fill,minmax(270px,1fr))]">
             {results.map((product, index) => (
               <li key={product.id}>
                 <ProductCard
