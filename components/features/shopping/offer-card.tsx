@@ -88,6 +88,23 @@ function OfferCard({
         </div>
       ) : null}
 
+      {offer.buyUrl ? (
+        <a
+          href={offer.buyUrl}
+          target="_blank"
+          rel="sponsored nofollow noopener"
+          className={cn(
+            'relative z-10 inline-flex min-h-11 items-center justify-center gap-1.5 self-start rounded-md',
+            'bg-brand px-4 text-sm font-semibold text-brand-foreground',
+            'transition-colors duration-fast ease-standard hover:bg-brand-hover',
+            'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+          )}
+        >
+          Buy at {offer.retailer}
+          <Icon name="externalLink" size="xs" />
+        </a>
+      ) : null}
+
       <dl className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
           <dt className="sr-only">Retailer</dt>

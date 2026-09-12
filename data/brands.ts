@@ -6,6 +6,17 @@ import type { Brand, BrandId } from '@/types';
  */
 export const brands: readonly Brand[] = [
   {
+    id: 'brand_zwerlon' as BrandId,
+    slug: 'zwerlon-x-ag',
+    name: 'ZWERLON X AG',
+    tagline: 'Marketplace fashion label',
+    logoText: 'ZX',
+    // No verifiable founding year or country of origin is published for this
+    // label — omitted rather than invented. See types/brand.ts.
+    strongIn: ['apparel'],
+    featured: false,
+  },
+  {
     id: 'brand_sonova' as BrandId,
     slug: 'sonova',
     name: 'Sonova',

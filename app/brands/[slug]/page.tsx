@@ -77,16 +77,20 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
     >
       <Section spacing="md" containerSize="full">
         <dl className="mb-8 grid gap-4 sm:grid-cols-3">
-          <div>
-            <dt className="text-sm text-muted-foreground">Founded</dt>
-            <dd data-numeric className="text-base font-medium">
-              {brand.foundedYear}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-sm text-muted-foreground">Origin</dt>
-            <dd className="text-base font-medium">{brand.originCountry}</dd>
-          </div>
+          {brand.foundedYear !== undefined ? (
+            <div>
+              <dt className="text-sm text-muted-foreground">Founded</dt>
+              <dd data-numeric className="text-base font-medium">
+                {brand.foundedYear}
+              </dd>
+            </div>
+          ) : null}
+          {brand.originCountry ? (
+            <div>
+              <dt className="text-sm text-muted-foreground">Origin</dt>
+              <dd className="text-base font-medium">{brand.originCountry}</dd>
+            </div>
+          ) : null}
           <div>
             <dt className="text-sm text-muted-foreground">Known for</dt>
             <dd className="mt-1 flex flex-wrap gap-1.5">

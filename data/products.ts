@@ -13,6 +13,51 @@ const placeholderImage = (name: string) => ({
  */
 export const products: readonly Product[] = [
   {
+    id: 'prod_zwerlon_tribal_wrap_dress' as ProductId,
+    slug: 'zwerlon-tribal-print-wrap-dress',
+    name: 'Women Tribal Print Fit & Flare Dress',
+    brandId: 'brand_zwerlon' as BrandId,
+    categoryId: 'cat_apparel' as CategoryId,
+    headline: 'A bold print at a steep discount from an unproven label',
+    image: {
+      src: '/images/products/zwerlon-tribal-print-wrap-dress.png',
+      alt: 'Woman wearing a teal wrap dress with a cream abstract tribal print, tie waist and tiered maxi skirt',
+      width: 1200,
+      height: 900,
+    },
+    // Single real price snapshot, not a tracked range — this is the first
+    // real (non-mock) product in the catalogue and has no price history yet.
+    priceBand: { min: 323, max: 323, currency: 'INR' },
+    rating: 3.3,
+    reviewCount: 2300,
+    availability: 'in-stock',
+    specs: [
+      { label: 'Silhouette', value: 'Wrap-style, tiered maxi' },
+      { label: 'Sleeve', value: 'Ruffled cap sleeve' },
+      { label: 'Waist', value: 'Adjustable tie belt' },
+      { label: 'Print', value: 'Allover abstract tribal print' },
+    ],
+    verdict: {
+      summary:
+        'A distinctive print at a steep markdown, but the 3.3 rating means fit and fabric are worth weighing before you commit.',
+      pros: [
+        'Genuinely distinctive print, not a generic pattern',
+        'Wrap silhouette with an adjustable tie waist',
+        'Very low price relative to the listed MRP',
+      ],
+      cons: [
+        'Mid-3-star rating — read recent reviews before buying',
+        'No fabric composition or care info verified for this listing',
+        'Unestablished label with no track record on this site yet',
+      ],
+      bestFor:
+        'Someone who wants a bold statement piece at a low price and is comfortable with an unproven, budget label',
+    },
+    tags: ['dress', 'maxi', 'wrap', 'printed'],
+    editorsPick: false,
+    updatedAt: '2026-09-12T00:00:00.000Z',
+  },
+  {
     id: 'prod_sonova_arc_900' as ProductId,
     slug: 'sonova-arc-900',
     name: 'Sonova Arc 900',

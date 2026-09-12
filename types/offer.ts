@@ -18,4 +18,12 @@ export interface Offer extends Entity<'offer'> {
   readonly productIds: readonly ProductId[];
   readonly startsAt: ISODateString;
   readonly expiresAt: ISODateString;
+  /** Optional: the real destination a shopper lands on to actually buy —
+   *  typically an affiliate-tracked retailer link. Nothing in the catalogue
+   *  had this field until the first real (non-mock) product needed it, so it
+   *  stays optional rather than forcing every existing mock offer to grow a
+   *  fake URL. `OfferCard` only renders an external "Buy at ..." link when
+   *  this is present; otherwise it falls back to the internal offers page,
+   *  exactly as it always has. */
+  readonly buyUrl?: string;
 }

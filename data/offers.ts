@@ -2,6 +2,21 @@ import type { BrandId, Offer, OfferId, ProductId } from '@/types';
 
 export const offers: readonly Offer[] = [
   {
+    id: 'offer_zwerlon_tribal_dress' as OfferId,
+    slug: 'zwerlon-tribal-wrap-dress-markdown',
+    name: '89% off the ZWERLON X AG tribal wrap dress',
+    kind: 'price-drop',
+    retailer: 'Ajio',
+    description:
+      'Price observed 12 Sep 2026 against the listed MRP of ₹2,935 — confirm the current price at checkout before buying, as marketplace prices move without notice.',
+    discountPercent: 89,
+    brandId: 'brand_zwerlon' as BrandId,
+    productIds: ['prod_zwerlon_tribal_wrap_dress' as ProductId],
+    buyUrl: 'https://ajiio.in/K0Fh4dj',
+    startsAt: '2026-09-12T00:00:00.000Z',
+    expiresAt: '2026-09-26T23:59:59.000Z',
+  },
+  {
     id: 'offer_arc900_launch' as OfferId,
     slug: 'sonova-arc-900-launch-price',
     name: '₹4,000 off the Sonova Arc 900',
