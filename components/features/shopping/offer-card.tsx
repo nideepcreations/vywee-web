@@ -45,16 +45,31 @@ function OfferCard({
   className,
   ...props
 }: OfferCardProps) {
+  // An offer you can actually act on is visually separated from the rest:
+  // a brand-coloured border and a tinted surface, so it does not read as one
+  // more item in a stack of similar cards. Offers without a real outbound
+  // link keep the plain outline treatment.
+  const isBuyable = Boolean(offer.buyUrl);
+
   return (
     <Card
       interactive
       variant="outline"
       padding="md"
-      className={cn('h-full gap-3', className)}
+      className={cn(
+        'h-full gap-3',
+        isBuyable && 'border-2 border-brand bg-brand-subtle/40',
+        className,
+      )}
       {...props}
     >
       <div className="flex flex-wrap items-center gap-2">
         <OfferBadge kind={offer.kind} offer={offer} size="sm" />
+        {isBuyable ? (
+          <Text as="span" size="xs" weight="semibold" className="text-brand-on-subtle">
+            Available now
+          </Text>
+        ) : null}
         {endingSoon ? (
           <Text as="span" size="xs" weight="medium" className="text-warning">
             Ending soon
