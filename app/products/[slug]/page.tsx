@@ -71,7 +71,6 @@ export default async function ProductPage({ params }: PageProps) {
   const brand = getBrandForProduct(product);
   const category = getCategoryForProduct(product);
   const offers = getOffersForProduct(product.id);
-  const primaryOffer = offers.find((offer) => offer.buyUrl);
   const related = getRelatedProducts(product, 4);
   const availability = AVAILABILITY_META[product.availability];
 
@@ -153,32 +152,15 @@ export default async function ProductPage({ params }: PageProps) {
               </Text>
             </div>
 
-            {/* Three distinct actions, in decreasing commitment:
-                  1. Buy — leaves the site for the retailer (only shown when a
-                     real, buyable offer exists).
-                  2. See offers — scrolls to this product's own offers section
-                     further down the page, rather than navigating away to the
-                     generic all-offers listing. Only shown when this product
-                     actually has offers to scroll to.
-                  3. Compare — stays on the site, widens the decision.
-                They coexist; the buy link does not replace the others. */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              {primaryOffer?.buyUrl ? (
-                <Button asChild size="lg">
-                  <a href={primaryOffer.buyUrl} target="_blank" rel="sponsored nofollow noopener">
-                    Buy at {primaryOffer.retailer}
-                    <Icon name="externalLink" size="sm" />
-                  </a>
-                </Button>
-              ) : null}
-              {offers.length > 0 ? (
-                <Button asChild size="lg" variant={primaryOffer?.buyUrl ? 'highlight' : 'primary'}>
-                  <Link href="#offers-heading">
-                    See offers
-                    <Icon name="deal" size="sm" />
-                  </Link>
-                </Button>
-              ) : null}
+            {/* Primary action. Retailer links land in a later sprint and will
+                take this slot without a layout change. */}
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg">
+                <Link href={ROUTES.offers}>
+                  See offers
+                  <Icon name="deal" size="sm" />
+                </Link>
+              </Button>
               {category ? (
                 <Button asChild size="lg" variant="secondary">
                   <Link href={ROUTES.category(category.slug)}>Compare in {category.name}</Link>
