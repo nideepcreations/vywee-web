@@ -38,7 +38,7 @@ export default async function OpengraphImage() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-        <img src={markSrc} width={104} height={100} alt="" />
+        <img src={markSrc} width={71} height={100} alt="" />
         <div style={{ fontSize: '64px', fontWeight: 700, color: '#ffffff' }}>{SITE.name}</div>
       </div>
 
@@ -64,7 +64,7 @@ export default async function OpengraphImage() {
           display: 'flex',
           height: '10px',
           width: '100%',
-          backgroundImage: 'linear-gradient(90deg, #2A3B7D 0%, #5B6FC4 50%, #C3CCEA 100%)',
+          backgroundImage: 'linear-gradient(90deg, #0B1220 0%, #2A3B7D 50%, #D4AF6A 100%)',
         }}
       />
     </div>,

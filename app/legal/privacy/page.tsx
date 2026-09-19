@@ -104,11 +104,19 @@ export default function PrivacyPage() {
           <Heading as="h2" level="h3" className="mb-3">
             3. Cookies and similar technology
           </Heading>
-          <Text leading="relaxed">
+          <Text leading="relaxed" className="mb-3">
             {SITE.name} uses a small amount of local storage to remember your theme preference. We
-            do not currently run third-party advertising trackers. Affiliate links to retailers do
-            carry a tracking parameter — this is how the retailer knows a purchase came from{' '}
-            {SITE.name}, and it is covered in more detail in our affiliate disclosure.
+            do not run third-party advertising trackers. Affiliate links to retailers do carry a
+            tracking parameter — this is how the retailer knows a purchase came from {SITE.name},
+            and it is covered in more detail in our affiliate disclosure.
+          </Text>
+          <Text leading="relaxed">
+            When Google Analytics is enabled, it uses cookies to distinguish returning visitors from
+            new ones and reports aggregate information — which pages are visited, roughly where
+            from, and what kind of device was used. IP addresses are truncated before Google stores
+            them. This tells us whether the site is being used at all; it is not linked to any
+            account, since {SITE.name} does not have accounts. Google&rsquo;s own privacy policy
+            governs what Google itself does with this data once collected.
           </Text>
         </section>
 

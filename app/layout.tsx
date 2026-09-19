@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
 
 import { Providers } from '@/app/providers';
+import { Analytics } from '@/components/shared/analytics';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { JsonLd } from '@/components/shared/json-ld';
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={SITE.language} suppressHydrationWarning className={fontVariables}>
       <body className="flex min-h-dvh flex-col antialiased">
+        <Analytics />
         <Providers>
           <SkipLink />
           <Header />

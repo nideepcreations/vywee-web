@@ -20,13 +20,13 @@ import { cn } from '@/lib/utils';
  * changes. They are swapped with CSS rather than JavaScript, which keeps this
  * a server component and avoids a flash on first paint.
  *
- * `LogoMark` is the standalone y, which is what the approved sheet specifies
- * for small sizes — the bag handle and eyelets collapse below roughly 24px.
- * It is the same artwork the favicon uses.
+ * `LogoMark` is the standalone bag-handle symbol, which is what the approved
+ * sheet specifies for small sizes — the handle and gold accents collapse
+ * below roughly 24px. It is the same artwork the favicon uses.
  */
 
 /** Intrinsic size of the lockup artwork; both variants share it. */
-export const LOGO_SOURCE = { width: 310, height: 105 } as const;
+export const LOGO_SOURCE = { width: 907, height: 400 } as const;
 
 export interface LogoMarkProps extends Omit<React.ComponentProps<typeof Image>, 'src' | 'alt'> {
   className?: string;
