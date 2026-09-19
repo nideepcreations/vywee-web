@@ -9,13 +9,14 @@ import { cn } from '@/lib/utils';
 /**
  * Brand marks.
  *
- * `Logo` renders the approved horizontal lockup as artwork — mark and custom
- * "Vywee" lettering together, exactly as supplied. The wordmark is not set in
- * a typeface: the letterforms are part of the artwork and are never
- * reconstructed.
+ * `Logo` renders the approved horizontal lockup as artwork — mark and
+ * lowercase "vywee" wordmark together. The mark's own colours (navy body,
+ * gold handle) are never recoloured between themes, only the wordmark's
+ * ink and, on the dark file, a soft light glow behind the mark so it still
+ * separates from a near-black header without touching its actual colours.
  *
- * Two files exist because the lettering colour is baked into the artwork:
- * navy on light surfaces, white on dark. Both are cut from the same source at
+ * Two files exist because the wordmark ink is baked into the artwork: navy
+ * on light surfaces, pale on dark. Both are cut from the same source at
  * identical dimensions, so the lockup does not change size when the theme
  * changes. They are swapped with CSS rather than JavaScript, which keeps this
  * a server component and avoids a flash on first paint.
@@ -26,7 +27,7 @@ import { cn } from '@/lib/utils';
  */
 
 /** Intrinsic size of the lockup artwork; both variants share it. */
-export const LOGO_SOURCE = { width: 907, height: 400 } as const;
+export const LOGO_SOURCE = { width: 1147, height: 440 } as const;
 
 export interface LogoMarkProps extends Omit<React.ComponentProps<typeof Image>, 'src' | 'alt'> {
   className?: string;
@@ -56,7 +57,7 @@ function LogoMark({ className, label, ...props }: LogoMarkProps) {
  */
 const LOGO_SIZES = {
   default: 'h-8 w-auto shrink-0',
-  lg: 'h-9 w-auto shrink-0 xs:h-11',
+  lg: 'h-11 w-auto shrink-0 xs:h-14',
 } as const;
 
 export type LogoSize = keyof typeof LOGO_SIZES;
