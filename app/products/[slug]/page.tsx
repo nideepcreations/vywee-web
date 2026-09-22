@@ -28,6 +28,7 @@ import {
 } from '@/data';
 import { brandById } from '@/data/brands';
 import { products, productBySlug } from '@/data/products';
+import { resolveOfferLinks } from '@/lib/affiliate/resolve';
 import { formatDate } from '@/lib/format';
 import { createBreadcrumbJsonLd, createMetadata, createProductJsonLd } from '@/lib/seo';
 
@@ -70,7 +71,10 @@ export default async function ProductPage({ params }: PageProps) {
 
   const brand = getBrandForProduct(product);
   const category = getCategoryForProduct(product);
-  const offers = getOffersForProduct(product.id);
+  // Raw retailer URLs in the catalogue become tracked affiliate links here,
+  // while the page is generated — so the buy button below is already the
+  // monetised link, with no per-click API call and no manual step upstream.
+  const offers = await resolveOfferLinks(getOffersForProduct(product.id));
   const primaryOffer = offers.find((offer) => offer.buyUrl);
   const related = getRelatedProducts(product, 4);
   const availability = AVAILABILITY_META[product.availability];
