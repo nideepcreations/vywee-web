@@ -11,7 +11,7 @@ import { Container } from '@/components/layout/container';
 import { PageWrapper } from '@/components/layout/page-wrapper';
 import { Section } from '@/components/layout/section';
 import { JsonLd } from '@/components/shared/json-ld';
-import { SmartImage } from '@/components/shared/smart-image';
+import { ProductGallery } from '@/components/features/shopping/product-gallery';
 import { Badge } from '@/components/ui/badge';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
@@ -100,13 +100,7 @@ export default async function ProductPage({ params }: PageProps) {
 
       <Section spacing="md" containerSize="full">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          <SmartImage
-            asset={product.image}
-            aspect="4/3"
-            priority
-            sizes="(min-width: 1024px) 560px, 100vw"
-            containerClassName="rounded-xl border border-border"
-          />
+          <ProductGallery primary={product.image} gallery={product.gallery} />
 
           <div className="flex flex-col gap-5">
             <div className="flex flex-wrap items-center gap-2">

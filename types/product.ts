@@ -24,7 +24,14 @@ export interface Product extends Entity<'product'> {
   readonly brandId: BrandId;
   readonly categoryId: CategoryId;
   readonly headline: string;
+  /** The single representative shot, used in cards, search results and the
+   *  social card. Always present. */
   readonly image: ImageAsset;
+  /** Optional: the remaining views a retailer publishes — back, detail,
+   *  fabric close-up. Shown only on the product page, where someone deciding
+   *  whether a shirt's print actually looks right needs more than one angle.
+   *  `image` is the first frame; these follow it. */
+  readonly gallery?: readonly ImageAsset[];
   readonly priceBand: PriceBand;
   readonly rating: Rating;
   /** Optional: a listing shows a star rating without ever stating how many

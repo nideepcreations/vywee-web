@@ -69,10 +69,36 @@ export const products: readonly Product[] = [
     // current one and adding a product needs no image upload.
     image: {
       src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/625984b1-1896-446d-ad6d-17c3c04497311753854336244-Levis-Men-Shirts-8101753854335846-1.jpg',
-      alt: 'Levis relaxed fit short-sleeved casual shirt in a black and cream floral print',
+      alt: 'Levis short-sleeved casual shirt in a black and cream floral print, worn open over a plain tee',
       width: 1080,
       height: 1440,
     },
+    gallery: [
+      {
+        src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/bc9f6068-dc90-4865-9712-b84565f13e031753854336209-Levis-Men-Shirts-8101753854335846-2.jpg',
+        alt: 'Side view of the floral print shirt showing the sleeve and shoulder line',
+        width: 1080,
+        height: 1440,
+      },
+      {
+        src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/25fbd054-5ee5-45e1-89e4-6e4e30d479a11753854336174-Levis-Men-Shirts-8101753854335846-3.jpg',
+        alt: 'Back view of the floral print shirt',
+        width: 1080,
+        height: 1440,
+      },
+      {
+        src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/81769591-8755-4569-abe6-1a66312578471753854336139-Levis-Men-Shirts-8101753854335846-4.jpg',
+        alt: 'Detail view of the shirt’s collar and button placket',
+        width: 1080,
+        height: 1440,
+      },
+      {
+        src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/e41ec3bf-390b-445f-86e0-b6d6da7061551753854336108-Levis-Men-Shirts-8101753854335846-5.jpg',
+        alt: 'Close-up of the floral print fabric',
+        width: 1080,
+        height: 1440,
+      },
+    ],
     /**
      * A real observed range, not a single snapshot: this listing was read at
      * ₹1,143 on 23 Sep 2026 and ₹779 on 26 Sep. Both ends are prices this
@@ -84,25 +110,29 @@ export const products: readonly Product[] = [
     reviewCount: 183,
     availability: 'in-stock',
     specs: [
-      { label: 'Fit', value: 'Relaxed' },
-      { label: 'Sleeve', value: 'Short sleeve' },
+      { label: 'Fabric', value: 'Viscose rayon' },
+      { label: 'Fit', value: 'Regular (listing title says relaxed)' },
+      { label: 'Collar', value: 'Cuban collar' },
+      { label: 'Sleeve', value: 'Short, regular styling' },
       { label: 'Print', value: 'Allover floral' },
+      { label: 'Wash care', value: 'Machine wash' },
+      { label: 'Sizes', value: '37 to 46' },
     ],
     verdict: {
       summary:
-        'Not tested by us. What we can stand behind: the price has fallen twice in three days, and 4.4 from 183 ratings is strong for a shirt at this level.',
+        'Not tested by us. The price has fallen twice in three days and 4.4 from 183 ratings is a real sample — but the listing calls it relaxed fit while its own spec sheet says regular, so size on the spec, not the title.',
       pros: [
         '4.4 from 183 ratings — a real sample size, not a handful of reviews',
-        'Levis is an established label, unlike most marketplace listings at this price',
+        'Viscose rayon and a Cuban collar, which is the right fabric and shape for a summer print shirt',
         'We watched it drop ₹1,143 → ₹779, so the markdown is genuine rather than a permanent fake MRP',
       ],
       cons: [
-        'We have not handled it — fabric weight and print quality are unverified',
-        'Fabric composition and care instructions are not stated on the listing',
-        'Still falling, so waiting may beat buying today',
+        'The title says relaxed fit, the spec sheet says regular fit — order on the assumption it is regular',
+        'Viscose creases readily and is machine wash only; it is not a low-maintenance shirt',
+        'Still falling in price, so waiting may beat buying today',
       ],
       bestFor:
-        'Someone after a printed casual shirt from a known brand who wants the discount to be real rather than staged',
+        'Someone after a summer print shirt from a known brand who wants the discount to be real rather than staged, and does not mind ironing',
     },
     tags: ['shirt', 'floral', 'printed', 'relaxed-fit', 'casual'],
     editorsPick: false,
