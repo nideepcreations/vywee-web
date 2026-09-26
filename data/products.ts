@@ -58,6 +58,57 @@ export const products: readonly Product[] = [
     updatedAt: '2026-09-12T00:00:00.000Z',
   },
   {
+    id: 'prod_levis_floral_relaxed_shirt' as ProductId,
+    slug: 'levis-relaxed-fit-floral-printed-casual-shirt',
+    name: 'Relaxed Fit Floral Printed Casual Shirt',
+    brandId: 'brand_levis' as BrandId,
+    categoryId: 'cat_apparel' as CategoryId,
+    headline: 'Fell from ₹1,143 to ₹779 in three days — the discount is real, and still moving',
+    // Referenced at Myntra's own CDN rather than copied into this repo:
+    // Next.js fetches and caches it, so the photo stays the retailer's
+    // current one and adding a product needs no image upload.
+    image: {
+      src: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/35666090/2025/7/30/625984b1-1896-446d-ad6d-17c3c04497311753854336244-Levis-Men-Shirts-8101753854335846-1.jpg',
+      alt: 'Levis relaxed fit short-sleeved casual shirt in a black and cream floral print',
+      width: 1080,
+      height: 1440,
+    },
+    /**
+     * A real observed range, not a single snapshot: this listing was read at
+     * ₹1,143 on 23 Sep 2026 and ₹779 on 26 Sep. Both ends are prices this
+     * site actually saw, which is the only kind of range worth publishing —
+     * the ₹2,599 MRP is the retailer's own claim and stays in the offer.
+     */
+    priceBand: { min: 779, max: 1143, currency: 'INR' },
+    rating: 4.4,
+    reviewCount: 183,
+    availability: 'in-stock',
+    specs: [
+      { label: 'Fit', value: 'Relaxed' },
+      { label: 'Sleeve', value: 'Short sleeve' },
+      { label: 'Print', value: 'Allover floral' },
+    ],
+    verdict: {
+      summary:
+        'Not tested by us. What we can stand behind: the price has fallen twice in three days, and 4.4 from 183 ratings is strong for a shirt at this level.',
+      pros: [
+        '4.4 from 183 ratings — a real sample size, not a handful of reviews',
+        'Levis is an established label, unlike most marketplace listings at this price',
+        'We watched it drop ₹1,143 → ₹779, so the markdown is genuine rather than a permanent fake MRP',
+      ],
+      cons: [
+        'We have not handled it — fabric weight and print quality are unverified',
+        'Fabric composition and care instructions are not stated on the listing',
+        'Still falling, so waiting may beat buying today',
+      ],
+      bestFor:
+        'Someone after a printed casual shirt from a known brand who wants the discount to be real rather than staged',
+    },
+    tags: ['shirt', 'floral', 'printed', 'relaxed-fit', 'casual'],
+    editorsPick: false,
+    updatedAt: '2026-09-26T00:00:00.000Z',
+  },
+  {
     id: 'prod_sonova_arc_900' as ProductId,
     slug: 'sonova-arc-900',
     name: 'Sonova Arc 900',

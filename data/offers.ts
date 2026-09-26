@@ -17,6 +17,24 @@ export const offers: readonly Offer[] = [
     expiresAt: '2026-09-26T23:59:59.000Z',
   },
   {
+    id: 'offer_levis_floral_shirt' as OfferId,
+    slug: 'levis-floral-printed-shirt-markdown',
+    name: '70% off the Levis floral printed casual shirt',
+    kind: 'price-drop',
+    retailer: 'Myntra',
+    description:
+      'Read at ₹779 on 26 Sep 2026, down from ₹1,143 three days earlier, against a stated MRP of ₹2,599. The two lower figures are prices we saw ourselves; the MRP is the retailer’s own claim. Confirm the price at checkout — it has moved twice this week.',
+    discountPercent: 70,
+    brandId: 'brand_levis' as BrandId,
+    productIds: ['prod_levis_floral_relaxed_shirt' as ProductId],
+    // Plain retailer URL. The tracked affiliate link is generated from this
+    // at build time — see lib/affiliate/resolve.ts.
+    retailerUrl:
+      'https://www.myntra.com/shirts/levis/levis-relaxed-fit-floral-printed-casual-shirt/35666090/buy',
+    startsAt: '2026-09-26T00:00:00.000Z',
+    expiresAt: '2026-10-26T23:59:59.000Z',
+  },
+  {
     id: 'offer_arc900_launch' as OfferId,
     slug: 'sonova-arc-900-launch-price',
     name: '₹4,000 off the Sonova Arc 900',

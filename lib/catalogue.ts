@@ -104,7 +104,11 @@ export function sortProducts(
 
   switch (key) {
     case 'rating':
-      return sorted.sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount);
+      // Count breaks ties only; a product without a verified count sorts as
+      // zero rather than dropping out of the comparison entirely.
+      return sorted.sort(
+        (a, b) => b.rating - a.rating || (b.reviewCount ?? 0) - (a.reviewCount ?? 0),
+      );
     case 'price-low':
       return sorted.sort((a, b) => a.priceBand.min - b.priceBand.min);
     case 'price-high':

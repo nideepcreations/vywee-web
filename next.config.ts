@@ -29,10 +29,24 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 480, 640, 768, 1024, 1280, 1440, 1920],
     imageSizes: [16, 24, 32, 48, 64, 96, 128, 256, 384],
+    /**
+     * Retailer image CDNs. Product photos are referenced at the retailer's
+     * own URL rather than copied into this repo: Next.js fetches and caches
+     * them through its optimiser, so a visitor never requests the retailer
+     * directly, and a product needs no manual image upload.
+     *
+     * Only the image hosts are listed — the retailers' HTML pages block
+     * automated requests, but their CDNs serve images to anyone.
+     */
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.myntassets.com',
         pathname: '/**',
       },
     ],

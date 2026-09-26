@@ -164,13 +164,20 @@ export function createProductJsonLd(
     url: absoluteUrl(ROUTES.product(product.slug), SITE.url),
     image: absoluteUrl(product.image.src, SITE.url),
     ...(brand ? { brand: { '@type': 'Brand', name: brand.name } } : {}),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: product.rating,
-      reviewCount: product.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    },
+    // Google requires a rating count alongside the value; emitting the block
+    // without one is invalid structured data, so a product with no verified
+    // count publishes no rating rather than a half-filled claim.
+    ...(product.reviewCount === undefined
+      ? {}
+      : {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: product.rating,
+            reviewCount: product.reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }),
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: product.priceBand.currency,

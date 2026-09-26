@@ -17,6 +17,17 @@ export const brands: readonly Brand[] = [
     featured: false,
   },
   {
+    id: 'brand_levis' as BrandId,
+    slug: 'levis',
+    name: 'Levis',
+    tagline: 'Denim house, now broad casualwear',
+    logoText: 'LV',
+    originCountry: 'United States',
+    foundedYear: 1853,
+    strongIn: ['apparel'],
+    featured: false,
+  },
+  {
     id: 'brand_sonova' as BrandId,
     slug: 'sonova',
     name: 'Sonova',

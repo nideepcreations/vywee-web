@@ -27,7 +27,13 @@ export interface Product extends Entity<'product'> {
   readonly image: ImageAsset;
   readonly priceBand: PriceBand;
   readonly rating: Rating;
-  readonly reviewCount: number;
+  /** Optional: a listing shows a star rating without ever stating how many
+   *  ratings produced it. Inventing a count to fill this field would be a
+   *  fabricated number on a page whose whole claim is that its numbers are
+   *  checked, so it stays absent instead. `Rating` hides the count when it
+   *  is missing, and the product's structured data omits the rating block
+   *  entirely rather than publishing an incomplete one. */
+  readonly reviewCount?: number;
   readonly availability: Availability;
   readonly specs: readonly ProductSpec[];
   readonly verdict: ProductVerdict;
